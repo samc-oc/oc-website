@@ -26,63 +26,63 @@ export const TEAM: TeamMember[] = [
     name: 'Sam Crawford',
     role: 'Managing Director',
     bio: '‘Big Picture Dreamer’ — Sam’s favourite animal would have to be the seal: Fun-loving, slow and endearing on land — yet fast, sleek and graceful under water.',
-    photo: `${WP}/2016/07/sam.png`,
+    photo: `/images/team/sam-crawford-online-consulting.png`,
     slug: 'sam-crawford',
   },
   {
     name: 'Wilma Amposta',
     role: 'General Manager',
     bio: '‘Superwoman’ — Wilma loves superheroes. While her girlfriends prefer romance films, Wilma will always choose ‘The Avengers’ over ‘Endless Love.’',
-    photo: `${WP}/2016/11/wilma.jpg`,
+    photo: `/images/team/wilma-amposta-online-consulting.jpg`,
     slug: 'wilma-amposta',
   },
   {
     name: 'Jackie Tuazon',
     role: 'Digital Marketing Manager',
     bio: '‘Carpe Diem’ — always ready to take on a new challenge, whatever time of day it is. Her motto: “Believe you can and you’re halfway there.”',
-    photo: `${WP}/2018/02/jack.jpg`,
+    photo: `/images/team/jackie-tuazon-online-consulting.jpg`,
     slug: 'jackie-tuazon',
   },
   {
     name: 'Jeff Ernacio',
     role: 'Help Desk Manager',
     bio: '‘IT Guy’ — Jeff is someone you can depend on, responsible and very trustworthy. “Engineer” to his friends, he’s a Jack of all trades.',
-    photo: `${WP}/2016/10/profilepic-jeff.jpg`,
+    photo: `/images/team/jeff-ernacio-online-consulting.jpg`,
     slug: 'jeff-ernacio',
   },
   {
     name: 'Vince Besavilla',
     role: 'Head of Front-End Development',
     bio: 'A self-described ‘tenacious learner’, always ready to tackle any challenge — and serving clients with ‘red carpet’ assistance.',
-    photo: `${WP}/2020/02/profilepic-vince.jpg`,
+    photo: `/images/team/vince-besavilla-online-consulting.jpg`,
     slug: 'vince-besavilla',
   },
   {
     name: 'Hannah Sheila Iway',
     role: 'SEO Specialist',
     bio: 'A decade in SEO and never stops learning — and a mummy blogger and brand influencer when she’s off the clock.',
-    photo: `${WP}/2016/10/profilepic-hannah.jpg`,
+    photo: `/images/team/hannah-sheila-iway-online-consulting.jpg`,
     slug: 'hannah-sheila-iway',
   },
   {
     name: 'Jarrad Peters',
     role: 'Account Manager',
     bio: 'The jack rabbit of the team — always moving forward, never giving up til he’s got the right result.',
-    photo: `${WP}/2016/11/profilepic-jarrad.jpg`,
+    photo: `/images/team/jarrad-peters-online-consulting.jpg`,
     slug: 'jarrad-peters',
   },
   {
     name: 'Richard Hensley',
     role: 'Copywriter and Content Strategist',
     bio: 'Says what needs to be said in as few words as possible. His motto — one of the world’s shortest poems: “Me, we.”',
-    photo: `${WP}/2016/11/profilepic-richard.jpg`,
+    photo: `/images/team/richard-hensley-online-consulting.jpg`,
     slug: 'richard-hensley',
   },
   {
     name: 'Thanh Le',
     role: 'Web Developer',
     bio: 'Has the patience to see the tiny details that create the perfect result. “The aeroplane takes off against the wind. Not with it!”',
-    photo: `${WP}/2020/02/profilepic-thanh.jpg`,
+    photo: `/images/team/thanh-le-online-consulting.jpg`,
     slug: 'thanh-le',
   },
 ];
@@ -91,4 +91,4 @@ export const TEAM: TeamMember[] = [
 export const TEAM_TEASER = [TEAM[0], TEAM[1], TEAM[3]];
 
 /** Wide team group photo from the old site (darkened banner treatment). */
-export const TEAM_GROUP_PHOTO = `${WP}/2016/07/team-bg.jpg`;
+export const TEAM_GROUP_PHOTO = `/images/team/online-consulting-team-group.jpg`;
