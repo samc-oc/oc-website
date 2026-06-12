@@ -1,0 +1,57 @@
+---
+/** Two-column pain/answer pattern (pillar §3): ✗ list left, ✓ list right. */
+import Icon from './Icon.astro';
+
+interface Props {
+  leftTitle: string;
+  rightTitle: string;
+  left: string[];
+  right: string[];
+}
+const { leftTitle, rightTitle, left, right } = Astro.props;
+---
+<div class="problem-solution">
+  <div class="ps-col reveal">
+    <h3>{leftTitle}</h3>
+    <ul>
+      {left.map((item) => (
+        <li>
+          <Icon name="x" size={18} class="ps-x" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div class="ps-col ps-col--good card reveal">
+    <h3>{rightTitle}</h3>
+    <ul>
+      {right.map((item) => (
+        <li>
+          <Icon name="check" size={18} class="icon--green" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .problem-solution {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-6);
+    align-items: start;
+  }
+
+  .ps-col h3 { font-size: var(--h4); margin-bottom: var(--s-4); }
+
+  .ps-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3); }
+  .ps-col li { display: flex; gap: 10px; align-items: flex-start; }
+  .ps-col li :global(svg) { margin-top: 3px; }
+
+  .problem-solution :global(.ps-x) { color: #94A3B8; }
+
+  @media (max-width: 768px) {
+    .problem-solution { grid-template-columns: 1fr; }
+  }
+</style>

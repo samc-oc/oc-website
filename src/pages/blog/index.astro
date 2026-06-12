@@ -1,0 +1,70 @@
+---
+/** Blog index — migrated posts, newest first. */
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const title = 'Blog | IT, Web & Marketing Advice | Online Consulting';
+const description =
+  'Practical advice on IT support, cybersecurity, websites and digital marketing from the Online Consulting team in Sydney.';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title={title} description={description} schema={[breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'Blog' }])]}>
+  <section class="hero-typographic">
+    <div class="container">
+      <h1>Advice worth acting on</h1>
+      <p class="lead">
+        Practical articles on IT, security, websites and marketing — written for business
+        owners, not engineers.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li class="card post-card card--hover">
+            <a href={`/blog/${post.id}/`} class="post-link">
+              <h2 class="post-title">{post.data.title}</h2>
+            </a>
+            <p class="post-date small">{formatDate(post.data.pubDate)}</p>
+            {post.data.description && <p class="post-excerpt">{post.data.description}</p>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-typographic { background: var(--bg); padding-block: var(--section-pad); }
+  .hero-typographic .lead { margin-top: var(--s-4); max-width: 54ch; }
+
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gutter);
+  }
+
+  .post-card { display: flex; flex-direction: column; gap: var(--s-2); }
+
+  .post-link { text-decoration: none; }
+  .post-title { font-size: var(--h4); line-height: 1.3; color: var(--navy); }
+  .post-link:hover .post-title { color: var(--blue); }
+
+  .post-date { color: var(--text); }
+  .post-excerpt { font-size: var(--small); }
+
+  @media (max-width: 1024px) { .post-list { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .post-list { grid-template-columns: 1fr; } }
+</style>

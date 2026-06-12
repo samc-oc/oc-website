@@ -1,0 +1,59 @@
+---
+/**
+ * Partner bar — white strip, greyscale logos, colour on hover (§2).
+ * TODO [ACTION]: swap text wordmarks for licensed partner logo SVGs
+ * (32px height) in /public/images/partners/ — keep the grayscale filter.
+ */
+interface Props {
+  logos: readonly string[];
+  microtext?: string;
+}
+const { logos, microtext = 'Certified partners with the platforms your business runs on' } = Astro.props;
+---
+<section class="partner-bar" aria-label="Certified partners">
+  <div class="container">
+    <p class="small partner-microtext">{microtext}</p>
+    <ul class="partner-list">
+      {logos.map((name) => (
+        <li class="partner-logo">{name}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .partner-bar {
+    background: var(--surface);
+    padding-block: var(--s-6);
+    border-block: 1px solid var(--border);
+  }
+  .partner-microtext {
+    text-align: center;
+    color: var(--text);
+    margin-bottom: var(--s-4);
+  }
+  .partner-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-4) var(--s-7);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  /* Text wordmarks stand in for logos; same grey→colour hover behaviour */
+  .partner-logo {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #94A3B8;
+    filter: grayscale(1);
+    transition: color 150ms ease, filter 150ms ease;
+    cursor: default;
+  }
+  .partner-logo:hover { color: var(--navy); filter: grayscale(0); }
+</style>

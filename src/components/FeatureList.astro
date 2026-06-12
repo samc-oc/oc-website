@@ -1,0 +1,40 @@
+---
+/** "What's included" feature grid — Lucide icon + bold lead + description. */
+import Icon from './Icon.astro';
+
+interface Props {
+  items: { icon: string; title: string; body: string }[];
+  columns?: 2 | 3;
+}
+const { items, columns = 2 } = Astro.props;
+---
+<ul class={`feature-list feature-list--${columns}`}>
+  {items.map((item) => (
+    <li class="feature reveal">
+      <Icon name={item.icon} size={28} />
+      <div>
+        <h3 class="feature-title">{item.title}</h3>
+        <p class="feature-body">{item.body}</p>
+      </div>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .feature-list {
+    display: grid;
+    gap: var(--s-6);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .feature-list--2 { grid-template-columns: repeat(2, 1fr); }
+  .feature-list--3 { grid-template-columns: repeat(3, 1fr); }
+
+  .feature { display: flex; gap: var(--s-4); align-items: flex-start; }
+  .feature-title { font-size: var(--h4); margin-bottom: var(--s-1); }
+
+  @media (max-width: 768px) {
+    .feature-list--2, .feature-list--3 { grid-template-columns: 1fr; }
+  }
+</style>

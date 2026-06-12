@@ -1,0 +1,33 @@
+---
+/** VA Recruitment Services — kept live at its old URL but REMOVED from all
+ *  navigation (SEO master sheet §3: ranks #24 "va sydney"; revisit in
+ *  6 months — retire or redirect to /contact/). Content migrated verbatim. */
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { breadcrumbSchema } from '../../lib/schema';
+import legacy from '../../lib/legacy/va-recruitment.json';
+
+const title = 'VA Recruitment Services Sydney | Online Consulting';
+const description = legacy.metaDescription;
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'VA Recruitment Services' }];
+---
+<Base title={title} description={description} schema={[breadcrumbSchema(crumbs)]}>
+  <section class="page-header">
+    <div class="container">
+      <Breadcrumb items={crumbs} />
+      <h1>{legacy.title}</h1>
+    </div>
+  </section>
+  <section class="section section--white">
+    <div class="container">
+      <div class="prose" set:html={legacy.html} />
+    </div>
+  </section>
+  <CTABanner heading="Want to know more?" primaryLabel="Contact us" />
+</Base>
+
+<style>
+  .page-header { background: var(--bg); padding-block: var(--s-7); }
+  .page-header h1 { margin-top: var(--s-5); }
+</style>

@@ -1,0 +1,61 @@
+---
+/** Child — Google Ads. HIGHEST-EQUITY URL: #1 for "google ads northern
+ *  beaches". 301 from /service/google-adwords/ — keep H1/topic continuity,
+ *  monitor Search Console weekly for the first month after launch. */
+import ChildPage from '../../layouts/ChildPage.astro';
+
+const faqs = [
+  {
+    q: 'What budget do we need?',
+    a: 'Enough to compete in your industry — and we’ll tell you honestly in the review if your budget can’t, plus what we’d do instead. Spending too little spreads clicks too thin to learn anything.',
+  },
+  {
+    q: 'How fast does Google Ads work?',
+    a: 'Traffic starts the day campaigns go live; efficient results take four to eight weeks of optimisation as data accumulates.',
+  },
+  {
+    q: 'We’ve run ads before and wasted money — why would this differ?',
+    a: 'Almost always, the waste was untracked conversions and unqualified clicks. We start by fixing measurement, so every decision after that is made on real data.',
+  },
+];
+---
+<ChildPage
+  title="Google Ads Management Sydney & Northern Beaches | Online Consulting"
+  description="Certified Google Partner managing high-performing Google Ads campaigns for Sydney businesses. Clear reporting and measurable results."
+  path="/digital-marketing/google-ads/"
+  serviceName="Google Ads Management"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Digital Marketing', href: '/digital-marketing/' },
+    { label: 'Google Ads' },
+  ]}
+  h1="Google Ads management that answers one question: what did we get back?"
+  subhead="As a certified Google Partner, we build campaigns where every dollar is tracked from click to enquiry — so your monthly report shows return, not just impressions."
+  trust={['Certified Google Partner', 'Conversion tracking configured in-house', 'Transparent monthly reporting']}
+  primaryCtaLabel="Book a Free Marketing Review"
+  features={[
+    { icon: 'chart-column', title: 'Campaign strategy & build', body: 'Search, shopping, display and remarketing, structured around your margins and capacity.' },
+    { icon: 'circle-check', title: 'Conversion tracking done properly', body: 'Calls, forms and sales measured end to end; most accounts we inherit are measuring the wrong things.' },
+    { icon: 'refresh-cw', title: 'Ongoing optimisation', body: 'Bids, keywords, negatives, copy and landing pages tuned continuously.' },
+    { icon: 'file-text', title: 'Plain-English reporting', body: 'Spend, cost per enquiry, and what we changed and why.' },
+  ]}
+  faqs={faqs}
+  ctaHeading="Stop paying for clicks. Start paying for customers."
+  crossLinksLabel="Also part of Digital Marketing:"
+  crossLinks={[
+    { label: 'Digital Marketing', href: '/digital-marketing/' },
+    { label: 'SEO', href: '/digital-marketing/seo/' },
+    { label: 'Social Media Marketing', href: '/digital-marketing/social-media/' },
+    { label: 'Content & Copywriting', href: '/digital-marketing/content-copywriting/' },
+    { label: 'Web Development', href: '/web-development/' },
+  ]}
+>
+  <Fragment slot="why">
+    <p>
+      Ads don’t fail in the account — they fail on slow pages, broken forms and tracking nobody
+      verified. Because we run the website and the hosting too, we fix the whole path from click
+      to customer, not just the part inside Google.
+      <a href="/why-one-partner/">See how one-partner technology works →</a>
+    </p>
+  </Fragment>
+</ChildPage>

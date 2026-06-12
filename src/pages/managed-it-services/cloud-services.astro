@@ -1,0 +1,67 @@
+---
+/** Child page 3 — Cloud Services / M365 + Google Workspace (final copy).
+ *  301 from /google-workspace/ lives in public/_redirects. */
+import ChildPage from '../../layouts/ChildPage.astro';
+
+const faqs = [
+  {
+    q: 'Microsoft 365 or Google Workspace — which is better?',
+    a: 'Neither, universally. Microsoft 365 usually suits businesses living in Excel, Outlook and Teams; Google Workspace suits collaboration-heavy teams who work in the browser. We’ll assess and recommend — and we’re certified in both, so the advice is straight.',
+  },
+  {
+    q: 'Will we lose email during migration?',
+    a: 'No. Migrations run in parallel — your old system keeps working until the new one is verified, then we switch over, typically outside business hours.',
+  },
+  {
+    q: 'Can you fix a messy existing setup?',
+    a: 'Very common request. We audit, clean up licensing, lock down sharing and security settings, and document everything.',
+  },
+];
+---
+<ChildPage
+  title="Microsoft 365 & Google Workspace Experts Sydney | Online Consulting"
+  description="Certified Microsoft and Google partners. Setup, migration and management of Microsoft 365 and Google Workspace for Sydney businesses."
+  path="/managed-it-services/cloud-services/"
+  serviceName="Cloud Services — Microsoft 365 & Google Workspace"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Managed IT Services', href: '/managed-it-services/' },
+    { label: 'Cloud Services' },
+  ]}
+  h1="Microsoft 365 and Google Workspace, run properly"
+  subhead="We’re certified partners of both Microsoft and Google — so we recommend the platform that fits your business, not the one we happen to resell."
+  trust={['Microsoft partner', 'Google partner', '18 years of cloud migrations']}
+  features={[
+    { icon: 'message-circle', title: 'Honest platform advice', body: 'Microsoft 365 vs Google Workspace, assessed against how your business actually works.' },
+    { icon: 'cloud', title: 'Migration without drama', body: 'Email, files and calendars moved in stages, with your team working throughout.' },
+    { icon: 'file-text', title: 'Licensing management', body: 'The right licences at the right tier, reviewed so you stop paying for seats nobody uses.' },
+    { icon: 'lock', title: 'Security configuration', body: 'MFA, sharing controls and data protection set up properly from day one.' },
+    { icon: 'settings', title: 'Ongoing admin & support', body: 'New starters, departures, permissions and “how do I…” questions, handled.' },
+    { icon: 'graduation-cap', title: 'Training', body: 'Practical sessions so your team uses what you’re paying for.' },
+  ]}
+  testimonial={{
+    quote: 'Sam facilitated our switch to Google Apps which gave us a rock-solid email solution that our users love … Sam’s assistance in rolling out the technology made the whole process simple … the result universally loved by our staff, that’s a win in our books.',
+    name: 'Erik Pizzorni',
+    role: 'Founder, HaltState',
+  }}
+  faqs={faqs}
+  ctaHeading="Get your cloud platform working for you — not the other way round."
+  crossLinks={[
+    { label: 'Managed IT Services', href: '/managed-it-services/' },
+    { label: 'IT Support & Helpdesk', href: '/managed-it-services/it-support/' },
+    { label: 'Cybersecurity', href: '/managed-it-services/cybersecurity/' },
+    { label: 'Networking & Infrastructure', href: '/managed-it-services/networking/' },
+    { label: 'Computer Repairs', href: '/managed-it-services/computer-repairs/' },
+  ]}
+>
+  {/* Testimonial note (deck): confirm with author — "Google Apps" is the
+      era-correct name for Google Workspace; quote trimmed with ellipses only. */}
+  <Fragment slot="why">
+    <p>
+      Dual certification is rarer than it sounds — most providers push one platform because it’s
+      all they know. We’ve migrated businesses in both directions for 18 years and will tell you
+      plainly which fits.
+      <a href="/why-one-partner/">See how one-partner technology works →</a>
+    </p>
+  </Fragment>
+</ChildPage>

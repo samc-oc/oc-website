@@ -1,0 +1,59 @@
+---
+/** Child — eCommerce (final copy). New URL (no redirect). */
+import ChildPage from '../../layouts/ChildPage.astro';
+
+const faqs = [
+  {
+    q: 'Why Shopify?',
+    a: 'It’s secure, reliable and built for selling — and as certified partners we extend it where the defaults fall short. Where Shopify genuinely isn’t the fit, we’ll say so and recommend what is.',
+  },
+  {
+    q: 'Can you fix or take over an existing store?',
+    a: 'Yes — store rescues and takeovers are common work. We audit, fix and take it from there.',
+  },
+  {
+    q: 'Will the store connect to our accounting software?',
+    a: 'That’s the goal of a proper build — orders flowing into your systems without manual re-entry. We’ll scope your integrations in the review.',
+  },
+];
+---
+<ChildPage
+  title="Shopify & eCommerce Development Sydney | Online Consulting"
+  description="Online stores built by a certified Shopify partner in Sydney — design, payments, shipping and integrations done properly, then hosted and supported."
+  path="/web-development/ecommerce/"
+  serviceName="Shopify & eCommerce Development"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Web Development', href: '/web-development/' },
+    { label: 'eCommerce' },
+  ]}
+  h1="Online stores built by a Shopify partner — and backed after launch"
+  subhead="An online store is a business system: payments, shipping, stock, tax and integrations all have to work, every day. We build stores that do — and we stay accountable for them after launch."
+  trust={['Certified Shopify partner', 'Design, build & support in-house', 'Integrations with your business systems']}
+  primaryCtaLabel="Book a Free Website Review"
+  features={[
+    { icon: 'shopping-cart', title: 'Store design & build', body: 'Fast, mobile-first Shopify stores designed around how your customers buy.' },
+    { icon: 'credit-card', title: 'Payments, shipping & tax', body: 'Gateways, rates, GST and rules configured correctly the first time.' },
+    /* TODO [PLACEHOLDER]: confirm which integrations are commonly delivered — e.g. Xero, MYOB */
+    { icon: 'settings', title: 'Integrations', body: 'Accounting, inventory and email platforms connected to the store.' },
+    { icon: 'refresh-cw', title: 'Migration', body: 'Moving from WooCommerce, Squarespace, Wix or an older platform without losing products, customers or rankings.' },
+    { icon: 'headset', title: 'Post-launch support', body: 'Training, changes and ongoing help from the same team that built it.' },
+  ]}
+  faqs={faqs}
+  ctaHeading="Build a store that runs the business — not one the business has to run."
+  crossLinksLabel="Also part of Web Development:"
+  crossLinks={[
+    { label: 'Web Development', href: '/web-development/' },
+    { label: 'Web Hosting & Domains', href: '/web-development/web-hosting/' },
+    { label: 'Digital Marketing', href: '/digital-marketing/' },
+  ]}
+>
+  <Fragment slot="why">
+    <p>
+      Most store builds end at launch. Ours don’t — your store joins your managed technology,
+      with the same monitoring, security standard and one-number support as everything else we
+      run for you.
+      <a href="/why-one-partner/">See how one-partner technology works →</a>
+    </p>
+  </Fragment>
+</ChildPage>

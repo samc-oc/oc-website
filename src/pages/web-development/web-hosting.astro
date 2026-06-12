@@ -1,0 +1,210 @@
+---
+/** Child — Web Hosting & Domains (final copy, published pricing carried from
+ *  current site — confirm rate card before launch). Defends "web hosting
+ *  northern beaches" (#6); 301 from /service/web-hosting/. */
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Icon from '../../components/Icon.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import Chips from '../../components/Chips.astro';
+import { SITE } from '../../lib/site';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '../../lib/schema';
+
+const title = 'Managed Web Hosting & Domains Sydney | Online Consulting';
+const description =
+  'Australian web hosting with real local support — dedicated VPS hosting, daily backups, WordPress security and domain management from a Sydney team.';
+
+const breadcrumb = [
+  { label: 'Home', href: '/' },
+  { label: 'Web Development', href: '/web-development/' },
+  { label: 'Web Hosting & Domains' },
+];
+
+/* Pricing carried over from the current site — keep synced with the rate card
+ * that applies at launch (deck developer notes). */
+const packages = [
+  {
+    name: 'Premium Managed VPS + WordPress Care',
+    price: '$264/mth + GST',
+    featured: true,
+    features: [
+      'Dedicated virtual server (1 CPU, 2GB RAM, 20GB SSD)',
+      'Domain & DNS management',
+      'CDN with web application firewall',
+      'SSL / full HTTPS',
+      'Weekly snapshots + daily backups',
+      'WordPress core & plugin updates',
+      'Uptime, speed and resource monitoring with fast business-hours response',
+      'OS & software patching',
+      '500GB monthly traffic',
+      'Up to 2 hours of content alterations per month',
+    ],
+  },
+  {
+    name: 'Premium VPS',
+    price: '$99/mth + GST',
+    featured: false,
+    features: [
+      'Everything in Premium Managed VPS except WordPress/plugin updates and monthly alterations',
+      'For sites maintained by your own team or developer',
+    ],
+  },
+  {
+    name: 'Self-Managed Hosting',
+    price: '$33/mth + GST',
+    featured: false,
+    features: [
+      '2GB space',
+      '30GB monthly transfer',
+      'cPanel access',
+      'Sydney data centre',
+      'Daily, weekly and monthly off-server backups',
+    ],
+    note: 'For users comfortable maintaining their own CMS and plugins — unmaintained sites carry security risk, and repair work is billed hourly.',
+  },
+];
+
+const faqs: Faq[] = [
+  {
+    q: 'Where is the hosting physically located?',
+    a: 'In a premium data centre in Ultimo, Sydney — fast for Australian visitors and within Australian jurisdiction.',
+  },
+  {
+    q: 'Do you manage domain renewals?',
+    a: 'Yes — on managed packages we handle domain and DNS management so a missed renewal never takes your site (or email) down. Domains stay registered in your name; you always own them.',
+  },
+  {
+    q: 'Can you migrate our site from another host?',
+    a: 'Yes, and migrations are planned so the switch happens without downtime.',
+  },
+];
+
+const schema = [
+  serviceSchema({ name: 'Managed Web Hosting & Domains', description, path: '/web-development/web-hosting/' }),
+  breadcrumbSchema(breadcrumb),
+  faqSchema(faqs),
+];
+---
+<Base title={title} description={description} schema={schema}>
+  <Hero
+    h1="Australian hosting with a Sydney team behind it"
+    subhead="Hosting is where websites quietly live or quietly die. Ours runs on dedicated Australian infrastructure, backed up daily, monitored for uptime and speed — with real people on the phone when you need them."
+    breadcrumb={breadcrumb}
+    primary={{ label: 'Book a Free Website Review', href: '/contact/' }}
+    secondary={{ label: `Call ${SITE.phone}`, href: SITE.phoneHref }}
+    trust={['Sydney data centre (Ultimo)', 'Daily backups', 'Dedicated VPS — no shared-server neighbours']}
+  />
+
+  {/* Packages */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>Hosting packages</h2>
+      <div class="packages">
+        {packages.map((pkg) => (
+          <article class={`card package reveal ${pkg.featured ? 'package--featured' : ''}`}>
+            <h3>{pkg.name}</h3>
+            <p class="package-price">{pkg.price}</p>
+            <ul>
+              {pkg.features.map((f) => (
+                <li>
+                  <Icon name="check" size={16} class={pkg.featured ? 'on-navy' : 'icon--green'} />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            {pkg.note && <p class="package-note small"><em>{pkg.note}</em></p>}
+          </article>
+        ))}
+      </div>
+      <p class="packages-footnote">
+        Ad-hoc website alterations: $121 + GST per hour (30-minute minimum). Tailored ongoing
+        plans available.
+      </p>
+    </div>
+  </section>
+
+  {/* Why Online Consulting */}
+  <section class="section">
+    <div class="container">
+      <h2>Why Online Consulting</h2>
+      <p class="why-body">
+        Cheap hosting is cheap because nobody’s watching it. Ours is monitored by the same team
+        that handles managed IT and cybersecurity — your website gets the same protection
+        standard as the rest of your business technology.
+        <a href="/why-one-partner/">See how one-partner technology works →</a>
+      </p>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>Web hosting — common questions</h2>
+      <FAQ faqs={faqs} />
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Move your website somewhere it’s actually looked after."
+    primaryLabel="Book a Free Website Review"
+    secondaryLabel={SITE.phone}
+  />
+
+  <section class="crosslinks">
+    <div class="container">
+      <p class="small crosslinks-label">Also part of Web Development:</p>
+      <Chips
+        items={[
+          { label: 'Web Development', href: '/web-development/' },
+          { label: 'eCommerce', href: '/web-development/ecommerce/' },
+          { label: 'Managed IT Services', href: '/managed-it-services/' },
+        ]}
+      />
+    </div>
+  </section>
+</Base>
+
+<style>
+  h2 { margin-bottom: var(--s-6); }
+
+  .packages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gutter);
+    align-items: start;
+  }
+
+  .package h3 { font-size: var(--h4); margin-bottom: var(--s-2); }
+
+  .package-price {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: var(--h3);
+    color: var(--navy);
+    margin-bottom: var(--s-4);
+  }
+
+  .package ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); }
+  .package li { display: flex; gap: 8px; align-items: flex-start; font-size: var(--small); }
+  .package li :global(svg) { margin-top: 3px; }
+
+  .package-note { margin-top: var(--s-4); }
+
+  .package--featured { background: var(--navy); }
+  .package--featured h3, .package--featured .package-price { color: #fff; }
+  .package--featured li, .package--featured .package-note { color: var(--text-on-dark); }
+
+  .packages-footnote { margin-top: var(--s-6); font-weight: 500; color: var(--navy); }
+
+  .why-body { max-width: 68ch; }
+  .why-body a { font-weight: 600; text-decoration: none; display: inline-block; margin-top: var(--s-3); }
+  .why-body a:hover { text-decoration: underline; }
+
+  .crosslinks { padding-block: var(--s-6); }
+  .crosslinks-label { font-weight: 600; color: var(--navy); margin-bottom: var(--s-3); }
+
+  @media (max-width: 1024px) {
+    .packages { grid-template-columns: 1fr; }
+  }
+</style>

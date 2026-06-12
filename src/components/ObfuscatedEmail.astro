@@ -1,0 +1,18 @@
+---
+/** Email rendered with anti-scrape protection (Contact deck): assembled
+ *  client-side from data attributes; accessible no-JS fallback text. */
+import { SITE } from '../lib/site';
+---
+<span class="obf-email" data-u={SITE.emailUser} data-d={SITE.emailDomain}>
+  <noscript>{SITE.emailUser} [at] {SITE.emailDomain}</noscript>
+</span>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.obf-email').forEach((el) => {
+    const address = `${el.dataset.u}@${el.dataset.d}`;
+    const a = document.createElement('a');
+    a.href = `mailto:${address}`;
+    a.textContent = address;
+    el.appendChild(a);
+  });
+</script>

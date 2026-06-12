@@ -1,0 +1,62 @@
+---
+/** Child page 2 — Cybersecurity (child-pages deck, final copy). */
+import ChildPage from '../../layouts/ChildPage.astro';
+
+const faqs = [
+  {
+    q: 'We’re a small business — are we really a target?',
+    a: 'Yes, precisely because attackers assume small businesses have weaker defences. Most attacks are automated and don’t care how big you are.',
+  },
+  {
+    q: 'Do we need to buy new software?',
+    a: 'Usually not much. We start with a security review, use what’s working, and fix what isn’t — you only pay for tools that close a real gap.',
+  },
+  {
+    q: 'What happens if we’re breached?',
+    a: 'You call us, and we run the response: isolate, recover from backups, investigate, and harden. One number, one team, no vendor finger-pointing.',
+  },
+];
+---
+<ChildPage
+  title="Cybersecurity Services Sydney | Sophos Partner | Online Consulting"
+  description="Protect your business with Sophos-backed endpoint security, email protection, patching and backups — managed by a Sydney team you can actually call."
+  path="/managed-it-services/cybersecurity/"
+  serviceName="Cybersecurity Services"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Managed IT Services', href: '/managed-it-services/' },
+    { label: 'Cybersecurity' },
+  ]}
+  h1="Cybersecurity for Sydney businesses — managed, monitored, handled"
+  subhead="Most small businesses don’t need more security products. They need one accountable team making sure protection is actually switched on, up to date, and watched — everywhere."
+  trust={['Sophos partner', '24/7 monitoring', '18 years protecting Sydney businesses']}
+  features={[
+    { icon: 'shield-check', title: 'Endpoint protection', body: 'Sophos-backed security on every device, centrally managed.' },
+    { icon: 'mail', title: 'Email security', body: 'Filtering, anti-phishing and impersonation protection where most attacks start.' },
+    { icon: 'refresh-cw', title: 'Patching & updates', body: 'The unglamorous work that prevents the majority of breaches, done on schedule.' },
+    { icon: 'database', title: 'Backup & recovery', body: 'Tested backups, so a bad day is an inconvenience rather than a catastrophe.' },
+    { icon: 'key-round', title: 'Access & identity', body: 'Multi-factor authentication and sensible permissions across your systems.' },
+    { icon: 'graduation-cap', title: 'Staff awareness training', body: 'Practical training so your people stop being the easiest way in.' },
+  ]}
+  faqs={faqs}
+  ctaHeading="Find out where your security gaps are — before someone else does."
+  crossLinks={[
+    { label: 'Managed IT Services', href: '/managed-it-services/' },
+    { label: 'IT Support & Helpdesk', href: '/managed-it-services/it-support/' },
+    { label: 'Cloud Services', href: '/managed-it-services/cloud-services/' },
+    { label: 'Networking & Infrastructure', href: '/managed-it-services/networking/' },
+    { label: 'Computer Repairs', href: '/managed-it-services/computer-repairs/' },
+  ]}
+>
+  <Fragment slot="why">
+    <p>
+      Security fails in the gaps between providers — the website nobody patches, the ex-staff
+      account nobody closed, the vendor login nobody tracks. Because we manage your IT, website,
+      hosting and cloud together, one security standard covers all of it.
+    </p>
+    <p>
+      We also guide businesses toward ACSC Essential Eight alignment.
+      <a href="/why-one-partner/">See how one-partner technology works →</a>
+    </p>
+  </Fragment>
+</ChildPage>

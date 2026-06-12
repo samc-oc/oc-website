@@ -1,0 +1,35 @@
+---
+/** Form success page — accessible success state: confirmation heading receives
+ *  focus on load and is announced via role="status". Noindexed. */
+import Base from '../../layouts/Base.astro';
+
+const title = 'Thanks — Request Received | Online Consulting';
+const description = 'Your request has been received. A real person will be in touch.';
+---
+<Base title={title} description={description} noindex>
+  <section class="section thanks">
+    <div class="container">
+      <div role="status">
+        <h1 id="thanks-heading" tabindex="-1">
+          Thanks — a real person will be in touch within one business day.
+        </h1>
+        {/* TODO [PLACEHOLDER]: confirm one-business-day reply commitment */}
+        <p class="lead">
+          If it’s urgent, call us now on <a href="tel:+61284597882">+61 2 8459 7882</a>.
+        </p>
+      </div>
+      <a class="btn btn--secondary back-home" href="/">Back to the home page</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .thanks { min-height: 50vh; padding-block: var(--section-pad-lg); }
+  .thanks h1 { max-width: 26ch; }
+  .thanks .lead { margin-top: var(--s-5); }
+  .back-home { margin-top: var(--s-6); }
+</style>
+
+<script>
+  document.getElementById('thanks-heading')?.focus();
+</script>

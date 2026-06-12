@@ -1,0 +1,73 @@
+---
+/** Child page 1 — IT Support & Helpdesk (child-pages deck, final copy). */
+import ChildPage from '../../layouts/ChildPage.astro';
+
+const faqs = [
+  {
+    q: 'Do you support both Mac and Windows?',
+    a: 'Yes — we support mixed environments daily, including Microsoft 365 and Google Workspace across both platforms.',
+  },
+  {
+    q: 'Can our staff contact you directly?',
+    a: 'Yes. Every staff member can call or email the helpdesk — no bottlenecking through one internal person unless you prefer it that way.',
+  },
+  {
+    q: 'What does “2-hour response” actually mean?',
+    a: 'A qualified engineer is working on your issue within two business hours of you logging it — not an auto-reply, an actual human response.',
+  },
+];
+---
+<ChildPage
+  title="IT Support Sydney — Helpdesk & On-Site | Online Consulting"
+  description="Fast, friendly IT support for Sydney businesses. 2-hour business-hours response, 24/7 monitoring, on-site visits. Sydney-based helpdesk, real people."
+  path="/managed-it-services/it-support/"
+  serviceName="IT Support & Helpdesk"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Managed IT Services', href: '/managed-it-services/' },
+    { label: 'IT Support & Helpdesk' },
+  ]}
+  h1="IT support Sydney businesses can call and actually reach"
+  subhead="Phone, email, remote session or on-site visit — our Sydney helpdesk responds within two hours in business hours, and we monitor your systems 24/7 so most problems are fixed before you notice them."
+  trust={[
+    '2-hour business-hours response',
+    '8-hour after-hours response (premium service)',
+    '24/7 monitoring',
+    '500+ endpoints supported',
+  ]}
+  features={[
+    { icon: 'headset', title: 'Responsive helpdesk', body: 'Phone, email and remote support for your whole team.' },
+    { icon: 'map-pin', title: 'On-site support', body: 'Engineers across Sydney when hands-on help is needed.' },
+    { icon: 'eye', title: '24/7 monitoring', body: 'We watch servers, devices and backups around the clock.' },
+    { icon: 'clock', title: 'After-hours cover', body: 'Available at a premium rate for businesses that can’t stop at 5pm.' },
+    { icon: 'refresh-cw', title: 'Proactive maintenance', body: 'Patching, updates and health checks done quietly in the background.' },
+    { icon: 'file-text', title: 'Plain-English reporting', body: 'Know what we fixed, what we prevented, and what’s next.' },
+  ]}
+  testimonial={{
+    quote: 'All my issues are solved quickly first time … I’m glad you are always there to help.',
+    name: 'Simon Hardaker',
+    role: 'Business Owner, Astemi Property',
+  }}
+  faqs={faqs}
+  ctaHeading="Stop chasing IT problems. Start calling people who fix them."
+  crossLinks={[
+    { label: 'Managed IT Services', href: '/managed-it-services/' },
+    { label: 'Cybersecurity', href: '/managed-it-services/cybersecurity/' },
+    { label: 'Cloud Services', href: '/managed-it-services/cloud-services/' },
+    { label: 'Networking & Infrastructure', href: '/managed-it-services/networking/' },
+    { label: 'Computer Repairs', href: '/managed-it-services/computer-repairs/' },
+    { label: 'IT Support Northern Beaches', href: '/it-support-northern-beaches/' },
+  ]}
+>
+  <Fragment slot="why">
+    <p>
+      No offshore call centres and no ticket black holes — you speak to the same small Sydney
+      team every time, and they already know your setup.
+    </p>
+    <p>
+      And because we also build websites and run marketing in-house, your IT support never ends
+      at “that’s not our system.”
+      <a href="/why-one-partner/">See how one-partner technology works →</a>
+    </p>
+  </Fragment>
+</ChildPage>

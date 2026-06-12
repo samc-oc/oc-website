@@ -1,0 +1,65 @@
+---
+/** Child — SEO (marketing/webdev child pages deck, final copy).
+ *  Defends "SEO services Northern Beaches" (#10); 301 from /service/seo-services/. */
+import ChildPage from '../../layouts/ChildPage.astro';
+
+const faqs = [
+  {
+    q: 'How long until we see results?',
+    a: 'Meaningful movement typically takes three to six months; local SEO often moves faster. Anyone guaranteeing page one in 30 days is guaranteeing something they don’t control.',
+  },
+  {
+    q: 'Do you guarantee rankings?',
+    a: 'No — nobody honest does, because Google decides. What we guarantee is transparent work, monthly reporting and accountability for outcomes over time.',
+  },
+  {
+    q: 'Will SEO work for a local business?',
+    a: 'Local is where SEO works hardest — searches like “near me” and “[service] + suburb” convert at the highest rates, and an 18-year-old local business has signals new competitors can’t fake.',
+  },
+];
+---
+<ChildPage
+  title="SEO Services Sydney & Northern Beaches | Online Consulting"
+  description="Results-driven SEO from a Sydney team — local SEO, content and technical optimisation. Google Partner. Transparent monthly reporting."
+  path="/digital-marketing/seo/"
+  serviceName="SEO Services"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Digital Marketing', href: '/digital-marketing/' },
+    { label: 'SEO' },
+  ]}
+  h1="SEO that’s built on technical foundations, not just keywords"
+  subhead="Rankings come from three things working together: a technically sound website, content worth ranking, and local signals Google trusts. Most agencies only control one of those. We control all three."
+  trust={['Google Partner', '18 years online', 'Technical SEO, content & hosting in-house']}
+  primaryCtaLabel="Book a Free Marketing Review"
+  features={[
+    { icon: 'map-pin', title: 'Local SEO', body: 'Google Business Profile, reviews strategy and local signals, so nearby customers find you first.' },
+    { icon: 'zap', title: 'Technical SEO', body: 'Site speed, indexing, schema and Core Web Vitals fixed at the source, because we have the keys to the hosting and the code.' },
+    { icon: 'pen-line', title: 'Content & on-page', body: 'Pages and articles written to answer what your customers actually search.' },
+    { icon: 'file-text', title: 'Honest reporting', body: 'Monthly plain-English reports: rankings, traffic, enquiries, and what we’re doing next.' },
+  ]}
+  testimonial={{
+    quote: 'PMWorks hired Sam to lead our SEO initiative. In a competitive environment, Sam has been able to achieve miracles with our search ranking … We will be engaging Sam to continue the work and provide our ongoing SEO maintenance.',
+    name: 'John Hawkins',
+    role: 'Director, Green Gem Investments',
+  }}
+  faqs={faqs}
+  ctaHeading="Find out why your competitors outrank you — and what it takes to change that."
+  crossLinksLabel="Also part of Digital Marketing:"
+  crossLinks={[
+    { label: 'Digital Marketing', href: '/digital-marketing/' },
+    { label: 'Google Ads', href: '/digital-marketing/google-ads/' },
+    { label: 'Social Media Marketing', href: '/digital-marketing/social-media/' },
+    { label: 'Content & Copywriting', href: '/digital-marketing/content-copywriting/' },
+    { label: 'Web Development', href: '/web-development/' },
+  ]}
+>
+  <Fragment slot="why">
+    <p>
+      When an SEO agency finds a technical problem, they write a ticket to your web developer
+      and wait. When we find one, we fix it the same day — we host and maintain the site. That
+      feedback loop is the quiet advantage behind every ranking we win.
+      <a href="/why-one-partner/">See how one-partner technology works →</a>
+    </p>
+  </Fragment>
+</ChildPage>

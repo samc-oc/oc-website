@@ -1,0 +1,206 @@
+---
+/** Web Development pillar — marketing-webdev-pillars deck, Pillar B (final copy).
+ *  301 from /service/web-development/ in public/_redirects. */
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import PartnerBar from '../../components/PartnerBar.astro';
+import Icon from '../../components/Icon.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+import PhotoPlaceholder from '../../components/PhotoPlaceholder.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { PARTNERS, SITE } from '../../lib/site';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '../../lib/schema';
+
+const title = 'Web Design & Development Sydney | Online Consulting';
+const description =
+  'Websites designed, built, hosted and secured in-house by a Sydney team — fast, modern sites maintained by the same people who run your IT.';
+
+const breadcrumb = [{ label: 'Home', href: '/' }, { label: 'Web Development' }];
+
+const threePoints = [
+  { icon: 'monitor', title: 'We build it', body: 'Designed and developed in-house, for speed and conversion.' },
+  { icon: 'server', title: 'We run it', body: 'Hosting, domains, SSL, backups and updates handled.' },
+  { icon: 'shield-check', title: 'We protect it', body: 'The same security standard that covers our managed IT clients.' },
+];
+
+const faqs: Faq[] = [
+  {
+    q: 'What platform do you build on?',
+    a: 'WordPress for content-managed business sites and Shopify for eCommerce, where we’re a certified partner. We recommend based on what your business needs, not our habits — and whatever we build, we host and maintain it ourselves.',
+  },
+  {
+    q: 'Can you take over a website someone else built?',
+    a: 'Yes — it’s some of our most common work. We audit it, secure it, move it to managed hosting and take it from there.',
+  },
+  {
+    q: 'How much does a website cost?',
+    a: 'It depends on scope, so we quote fixed-price after a short discovery conversation. You’ll know the full cost before we start — no surprise invoices.',
+  },
+  {
+    q: 'Will my website be fast?',
+    a: 'Yes, and we’ll prove it — page speed is a ranking factor and a conversion factor, so we build to score well on Google’s Core Web Vitals and show you the results.',
+  },
+];
+
+const schema = [
+  serviceSchema({ name: 'Web Design & Development', description, path: '/web-development/' }),
+  breadcrumbSchema(breadcrumb),
+  faqSchema(faqs),
+];
+---
+<Base title={title} description={description} schema={schema}>
+  {/* Section 1 — Hero */}
+  <Hero
+    h1="Websites built, hosted and looked after by one Sydney team"
+    subhead="We design and build fast, modern websites — then we host them, secure them and keep them running. No handover to a mystery hosting company. No orphaned site nobody maintains."
+    breadcrumb={breadcrumb}
+    primary={{ label: 'Book a Free Website Review', href: '/contact/?service=web' }}
+    secondary={{ label: `Call ${SITE.phone}`, href: SITE.phoneHref }}
+    trust={['18 years building for the web', 'Shopify partner', 'Hosted & secured in-house']}
+  />
+
+  {/* Section 2 — Partner strip */}
+  <PartnerBar logos={PARTNERS.web} />
+
+  {/* Section 3 — The orphaned-website problem */}
+  <section class="section">
+    <div class="container">
+      <h2>Most websites are abandoned the day they launch</h2>
+      <p class="orphan-body">
+        The agency builds it, hands over the passwords, and moves on. Two years later: plugins
+        unpatched, forms silently broken, hosting renewals nobody understands, and a security
+        hole waiting to be found. A website is not a project — it’s an operational system, and it
+        needs an owner.
+      </p>
+      <ul class="three-points">
+        {threePoints.map((point) => (
+          <li class="card reveal">
+            <Icon name={point.icon} size={28} />
+            <h3>{point.title}</h3>
+            <p>{point.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* Section 4 — Services */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>What we build and run</h2>
+      <div class="grid grid--3">
+        <ServiceCard icon="monitor" title="Web Design & Development" href="#what-we-build" linkLabel="See how we build" class="reveal">
+          Modern, fast, mobile-first websites built around what your visitors need to do —
+          enquire, book, buy.
+        </ServiceCard>
+        <ServiceCard icon="shopping-cart" title="eCommerce" href="/web-development/ecommerce/" linkLabel="Explore eCommerce" class="reveal">
+          Online stores on Shopify and beyond, built by a certified Shopify partner — products,
+          payments, shipping and integrations done properly.
+        </ServiceCard>
+        <ServiceCard icon="server" title="Web Hosting & Domains" href="/web-development/web-hosting/" linkLabel="Explore Web Hosting & Domains" class="reveal">
+          Australian hosting, domain management, SSL and email — monitored 24/7 like everything
+          else we manage.
+        </ServiceCard>
+      </div>
+
+      {/* Inline block — Care & maintenance */}
+      <aside class="card care-block reveal" id="what-we-build">
+        <h3>Care &amp; maintenance</h3>
+        <p>
+          Every site we build can come with our managed hosting and care plan: dedicated
+          Australian VPS hosting, daily backups, SSL, a web application firewall, WordPress and
+          plugin updates, uptime and speed monitoring, and up to two hours of content changes
+          each month — from $264/month + GST, with hosting-only options from $33/month + GST.
+          Full details on the <a href="/web-development/web-hosting/">Web Hosting &amp; Domains page</a>.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  {/* Section 5 — The one-partner advantage (navy) */}
+  <section class="section section--navy">
+    <div class="container">
+      <h2>Your website is part of your IT — we treat it that way</h2>
+      <p class="one-partner-body">
+        Your website holds customer data, connects to your email, and represents your business to
+        every visitor. Yet most businesses leave it with a vendor who never thinks about it
+        again. When Online Consulting builds your site, it joins the rest of your managed
+        technology — patched, backed up, monitored 24/7, and covered by one security standard
+        from your office network to your home page.
+      </p>
+      <a class="one-partner-link" href="/why-one-partner/">See how one-partner technology works →</a>
+    </div>
+  </section>
+
+  {/* Section 6 — Our work + proof */}
+  <section class="section">
+    <div class="container">
+      <h2>Built by us, backed by us</h2>
+      {/* TODO [ACTION]: portfolio grid of 4–6 recent projects — Jackie and
+          Wilma to nominate; old /work/ projects must NOT be reused; each
+          featured client must confirm permission. Slots below. */}
+      <div class="grid grid--3 portfolio-grid">
+        <PhotoPlaceholder label="[Portfolio slot 1 — awaiting nomination]" ratio="16 / 10" />
+        <PhotoPlaceholder label="[Portfolio slot 2 — awaiting nomination]" ratio="16 / 10" />
+        <PhotoPlaceholder label="[Portfolio slot 3 — awaiting nomination]" ratio="16 / 10" />
+      </div>
+      <TestimonialCard
+        class="reveal proof-quote"
+        quote="Sam is a reliable and knowledgeable IT consultant … Sam has managed my website and IT for several years and we’ve been very happy with him and his team."
+        name="Cathy Curtis"
+        role="Owner, You & Eye Optical"
+      />
+    </div>
+  </section>
+
+  {/* Section 7 — FAQ */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>Web development — common questions</h2>
+      <FAQ faqs={faqs} />
+    </div>
+  </section>
+
+  {/* Section 8 — CTA banner */}
+  <CTABanner
+    heading="Get a website that’s built — and backed"
+    body="Book a free website review. We’ll assess your current site’s speed, security and conversion, and give you a report that’s yours to keep."
+    primaryLabel="Book a Free Website Review"
+    primaryHref="/contact/?service=web"
+    secondaryLabel={SITE.phone}
+  />
+</Base>
+
+<style>
+  h2 { margin-bottom: var(--s-6); }
+
+  .orphan-body { max-width: 64ch; margin-bottom: var(--s-6); }
+
+  .three-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gutter);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .three-points li { display: flex; flex-direction: column; gap: var(--s-2); }
+  .three-points h3 { font-size: var(--h4); }
+
+  .care-block { margin-top: var(--s-6); }
+  .care-block h3 { margin-bottom: var(--s-3); }
+  .care-block p { max-width: 75ch; }
+
+  .one-partner-body { max-width: 68ch; margin-bottom: var(--s-5); }
+  .one-partner-link { font-weight: 600; text-decoration: none; }
+  .one-partner-link:hover { text-decoration: underline; }
+
+  .portfolio-grid { margin-bottom: var(--s-6); }
+  .proof-quote { max-width: 720px; }
+
+  @media (max-width: 768px) {
+    .three-points { grid-template-columns: 1fr; }
+  }
+</style>

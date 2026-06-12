@@ -1,0 +1,57 @@
+---
+/**
+ * Testimonial card (§2): white surface, large cyan quote mark at 24% opacity,
+ * quote in --body-lg, attribution 600 + role --small.
+ * CONTENT RULE: quotes are exact trimmed text — never reworded.
+ */
+interface Props {
+  quote: string;
+  name: string;
+  role: string;
+  featured?: boolean;
+  class?: string;
+}
+const { quote, name, role, featured = false, class: className = '' } = Astro.props;
+---
+<figure class={`card testimonial ${featured ? 'testimonial--featured' : ''} ${className}`}>
+  <span class="testimonial-mark" aria-hidden="true">“</span>
+  <blockquote class="testimonial-quote">{quote}</blockquote>
+  <figcaption class="testimonial-attribution">
+    <span class="testimonial-name">{name}</span>
+    <span class="testimonial-role small">{role}</span>
+  </figcaption>
+</figure>
+
+<style>
+  .testimonial {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .testimonial-mark {
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 88px;
+    line-height: 1;
+    color: var(--cyan);
+    opacity: 0.24;
+    pointer-events: none;
+  }
+
+  .testimonial-quote {
+    margin: 0;
+    padding-top: var(--s-5);
+    font-size: var(--body-lg);
+    color: var(--navy);
+  }
+
+  .testimonial--featured .testimonial-quote { font-size: var(--h3); font-weight: 500; }
+
+  .testimonial-attribution { display: flex; flex-direction: column; gap: 2px; }
+  .testimonial-name { font-weight: 600; color: var(--navy); }
+  .testimonial-role { color: var(--text); }
+</style>

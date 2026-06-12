@@ -1,0 +1,60 @@
+---
+/** Child page 4 — Networking & Infrastructure (final copy). */
+import ChildPage from '../../layouts/ChildPage.astro';
+
+const faqs = [
+  {
+    q: 'Our Wi-Fi is slow — do we need a whole new network?',
+    a: 'Often not. Many problems are placement, interference or configuration. We start with an assessment and only replace what’s genuinely underperforming.',
+  },
+  {
+    q: 'Can you connect multiple office locations?',
+    a: 'Yes — site-to-site links and centrally managed UniFi networks across locations are standard work for us.',
+  },
+  {
+    q: 'Do you monitor the network after installation?',
+    a: 'Yes, 24/7. Installation without monitoring is half a job.',
+  },
+];
+---
+<ChildPage
+  title="Business Networking & Wi-Fi Sydney | UniFi | Online Consulting"
+  description="Ubiquiti UniFi networks designed, installed and monitored for Sydney offices — fast, secure Wi-Fi and infrastructure that just works."
+  path="/managed-it-services/networking/"
+  serviceName="Networking & Infrastructure"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Managed IT Services', href: '/managed-it-services/' },
+    { label: 'Networking & Infrastructure' },
+  ]}
+  h1="Office networks that just work — designed, installed, monitored"
+  subhead="Slow Wi-Fi and dropouts aren’t a fact of life. We design, build and monitor Ubiquiti UniFi networks for Sydney offices — and because we watch them 24/7, we usually know about a problem before you do."
+  trust={['Ubiquiti UniFi partner', '24/7 network monitoring', 'Sydney-wide installation']}
+  features={[
+    { icon: 'network', title: 'Network design & installation', body: 'Wi-Fi, switching and routing planned for your floor plan and headcount.' },
+    { icon: 'wifi', title: 'Business-grade Wi-Fi', body: 'Full coverage, guest networks kept separate from business systems.' },
+    { icon: 'shield-check', title: 'Firewall & security', body: 'Your network perimeter configured and maintained as part of one security standard.' },
+    { icon: 'key-round', title: 'Remote access & VPN', body: 'Secure connections for staff working from home or between sites.' },
+    { icon: 'eye', title: '24/7 monitoring', body: 'Outages and degradation flagged and fixed proactively.' },
+    { icon: 'server', title: 'Structured cabling', body: 'Arranged as part of installations and office fit-outs.' },
+    { icon: 'phone', title: 'ISP liaison', body: 'We deal with your internet provider so you never sit on hold.' },
+  ]}
+  faqs={faqs}
+  ctaHeading="Never think about your office network again. That’s the point."
+  crossLinks={[
+    { label: 'Managed IT Services', href: '/managed-it-services/' },
+    { label: 'IT Support & Helpdesk', href: '/managed-it-services/it-support/' },
+    { label: 'Cybersecurity', href: '/managed-it-services/cybersecurity/' },
+    { label: 'Cloud Services', href: '/managed-it-services/cloud-services/' },
+    { label: 'Computer Repairs', href: '/managed-it-services/computer-repairs/' },
+  ]}
+>
+  <Fragment slot="why">
+    <p>
+      A network is only as good as whoever’s watching it. Ours come with the same 24/7 monitoring
+      and 2-hour response as everything else we manage — and one team accountable from the wall
+      socket to the cloud.
+      <a href="/why-one-partner/">See how one-partner technology works →</a>
+    </p>
+  </Fragment>
+</ChildPage>

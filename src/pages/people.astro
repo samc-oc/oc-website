@@ -1,0 +1,65 @@
+---
+/** Our People — supporting-pages deck. Existing personality bios carried over
+ *  (they stay — memorable, human, exactly what a "real local team" claim
+ *  should look like).
+ *  TODO [ACTION]: refresh team photography in a consistent style — one of the
+ *  highest-value visual investments on the site. Name files descriptively,
+ *  e.g. sam-crawford-online-consulting.jpg (SEO master sheet §6). */
+import Base from '../layouts/Base.astro';
+import TeamCard from '../components/TeamCard.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { breadcrumbSchema } from '../lib/schema';
+
+const title = 'Meet the Team | Online Consulting Sydney';
+const description =
+  'The Sydney team behind Online Consulting — the people who answer when you call, and the personalities behind 18 years of IT support.';
+
+/* Bios carried from the current /people/ page. TODO: confirm the full team
+ * roster and complete bio lines against the live page at content handover. */
+const team = [
+  {
+    name: 'Sam Crawford',
+    role: 'Managing Director',
+    bio: '‘Big Picture Dreamer’ — Sam’s favourite animal would have to be the seal: Fun-loving, slow and endearing on land.',
+  },
+  {
+    name: 'Wilma Amposta',
+    role: 'General Manager',
+    bio: '‘Superwoman’ — Wilma loves superheroes. When she and her girlfriends head out to the movies, it’s a superhero film.',
+  },
+  {
+    name: 'Jeff Ernacio',
+    role: 'Help Desk Manager',
+    bio: '‘IT Guy’ — Jeff is someone you can depend on, responsible and very trustworthy.',
+  },
+];
+---
+<Base title={title} description={description} schema={[breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'Our People' }])]}>
+  <section class="hero-typographic">
+    <div class="container">
+      <h1>The people who pick up the phone</h1>
+      <p class="lead">
+        No offshore call centres, no anonymous ticket queues. These are the people who manage
+        your systems, build your website and answer when you call — based in our Allambie
+        Heights office.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid grid--3">
+        {team.map((member) => (
+          <TeamCard name={member.name} role={member.role} bio={member.bio} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner heading="Put names and faces to your IT" />
+</Base>
+
+<style>
+  .hero-typographic { background: var(--bg); padding-block: var(--section-pad-lg); }
+  .hero-typographic .lead { margin-top: var(--s-5); max-width: 58ch; }
+</style>

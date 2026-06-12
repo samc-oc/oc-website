@@ -1,0 +1,87 @@
+---
+/**
+ * FAQ accordion (§2): full-row buttons, H4-style question + chevron,
+ * aria-expanded toggles, content present in served HTML (CSS-collapsed).
+ * Pair with faqSchema() in the page's Base `schema` prop where FAQPage
+ * markup is wanted (NOT on Why One Partner — see its deck notes).
+ */
+import Icon from './Icon.astro';
+import type { Faq } from '../lib/schema';
+
+interface Props {
+  faqs: Faq[];
+}
+const { faqs } = Astro.props;
+const uid = Math.random().toString(36).slice(2, 8);
+---
+<div class="faq">
+  {faqs.map((faq, i) => (
+    <div class="faq-item">
+      <h3 class="faq-heading">
+        <button
+          type="button"
+          class="faq-trigger"
+          aria-expanded="false"
+          aria-controls={`faq-${uid}-${i}`}
+          id={`faq-${uid}-${i}-trigger`}
+        >
+          <span>{faq.q}</span>
+          <Icon name="chevron-down" size={20} class="faq-chevron" />
+        </button>
+      </h3>
+      <div
+        class="faq-panel"
+        id={`faq-${uid}-${i}`}
+        role="region"
+        aria-labelledby={`faq-${uid}-${i}-trigger`}
+        hidden
+      >
+        <p>{faq.a}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .faq { border-top: 1px solid var(--border); }
+
+  .faq-item { border-bottom: 1px solid var(--border); }
+
+  .faq-heading { margin: 0; font-size: var(--h4); }
+
+  .faq-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    width: 100%;
+    min-height: 44px;
+    padding: var(--s-4) var(--s-2);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .faq-trigger:hover { color: var(--blue); }
+
+  .faq-trigger :global(.faq-chevron) { transition: transform 150ms ease; color: var(--blue); }
+  .faq-trigger[aria-expanded='true'] :global(.faq-chevron) { transform: rotate(180deg); }
+
+  .faq-panel { padding: 0 var(--s-2) var(--s-5); max-width: 70ch; }
+</style>
+
+<script>
+  /* Content is in the served HTML; JS only toggles visibility. */
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const panel = document.getElementById(btn.getAttribute('aria-controls')!);
+      if (panel) panel.hidden = expanded;
+    });
+  });
+</script>

@@ -1,0 +1,184 @@
+---
+/** Digital Marketing pillar — marketing-webdev-pillars deck, Pillar A (final copy). */
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import PartnerBar from '../../components/PartnerBar.astro';
+import ProblemSolution from '../../components/ProblemSolution.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { PARTNERS, SITE } from '../../lib/site';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '../../lib/schema';
+
+const title = 'Digital Marketing Sydney — SEO, Google Ads & Social | Online Consulting';
+const description =
+  'SEO, Google Ads, social media and content for Sydney businesses — run by the same in-house team that manages your IT. One firm, one strategy.';
+
+const breadcrumb = [{ label: 'Home', href: '/' }, { label: 'Digital Marketing' }];
+
+const services = [
+  {
+    icon: 'search',
+    title: 'SEO',
+    body: 'Local and organic search built on technical foundations most agencies can’t touch — because we control the hosting, the code and the content.',
+    href: '/digital-marketing/seo/',
+  },
+  {
+    icon: 'chart-column',
+    title: 'Google Ads',
+    body: 'Certified Google Partner campaigns with honest reporting: what you spent, what it returned, what we’re changing.',
+    href: '/digital-marketing/google-ads/',
+  },
+  {
+    icon: 'share-2',
+    title: 'Social Media Marketing',
+    body: 'Strategy, content and management that builds an audience worth having.',
+    href: '/digital-marketing/social-media/',
+  },
+  {
+    icon: 'pen-line',
+    title: 'Content & Copywriting',
+    body: 'Words, photography and video produced in-house — for your website, campaigns and socials.',
+    href: '/digital-marketing/content-copywriting/',
+  },
+];
+
+const faqs: Faq[] = [
+  {
+    q: 'How long does SEO take to work?',
+    a: 'Honest answer: meaningful movement typically takes three to six months, faster for local search. Anyone promising page one in 30 days is selling something else.',
+  },
+  {
+    q: 'Do we have to host our website with you?',
+    a: 'No — we can run marketing on any site. But when we manage the site too, we can fix technical issues at the source instead of sending requests to a third party.',
+  },
+  {
+    q: 'What’s the minimum budget for Google Ads?',
+    a: 'It varies by industry and competition. We’ll tell you honestly in the review if your budget is too small to compete — and what we’d do instead.',
+  },
+  {
+    q: 'Do you lock us into long contracts?',
+    a: 'Our standard agreement runs for 12 months, which locks your pricing in for the full term — but you’re free to exit any time after six months with one month’s notice. We’d rather keep you with results than with paperwork.',
+  },
+];
+
+const schema = [
+  serviceSchema({ name: 'Digital Marketing', description, path: '/digital-marketing/' }),
+  breadcrumbSchema(breadcrumb),
+  faqSchema(faqs),
+];
+---
+<Base title={title} description={description} schema={schema}>
+  {/* Section 1 — Hero */}
+  <Hero
+    h1="Digital marketing from people who understand the technology behind it"
+    subhead="SEO, Google Ads, social media and content for Sydney businesses — delivered by an in-house team at a technology firm, not a creative agency that blames “the website” when results stall."
+    breadcrumb={breadcrumb}
+    primary={{ label: 'Book a Free Marketing Review', href: '/contact/?service=marketing' }}
+    secondary={{ label: `Call ${SITE.phone}`, href: SITE.phoneHref }}
+    trust={['Google Partner', '18 years online', 'SEO, Ads & analytics in-house']}
+  />
+
+  {/* Section 2 — Partner strip */}
+  <PartnerBar logos={PARTNERS.marketing} microtext="Certified where it counts" />
+
+  {/* Section 3 — The agency problem */}
+  <section class="section">
+    <div class="container">
+      <h2>Why marketing stalls when it’s split across vendors</h2>
+      <ProblemSolution
+        leftTitle="Sound familiar?"
+        rightTitle="How it should work"
+        left={[
+          'The agency blames the website. The web developer blames the agency.',
+          'Tracking was “set up” but nobody’s sure it’s measuring the right things',
+          'The site is too slow to convert the traffic you’re paying for',
+          'Every campaign change needs three companies on one email thread',
+        ]}
+        right={[
+          'We run the marketing AND the website — there’s nobody to blame but us',
+          'Analytics and conversion tracking configured properly, by people who do it for a living',
+          'Site speed and technical SEO fixed at the source, because we have the keys',
+          'One team, one strategy, one monthly report in plain English',
+        ]}
+      />
+    </div>
+  </section>
+
+  {/* Section 4 — Services */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>What we do</h2>
+      <div class="grid grid--2">
+        {services.map((s) => (
+          <ServiceCard icon={s.icon} title={s.title} href={s.href} linkLabel={`Explore ${s.title}`} class="reveal">
+            {s.body}
+          </ServiceCard>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Section 5 — The one-partner advantage (navy) */}
+  <section class="section section--navy">
+    <div class="container">
+      <h2>Marketing works better when one firm holds all the pieces</h2>
+      <p class="one-partner-body">
+        Great campaigns die on slow websites, broken tracking and forms that fail on mobile.
+        Because Online Consulting builds and hosts websites and manages IT, our marketing team
+        can fix the technical problems other agencies can only write tickets about. Your data
+        stays in one place, your tracking actually works, and your monthly report covers the
+        whole funnel — not just the slice one vendor is responsible for.
+      </p>
+      <a class="one-partner-link" href="/why-one-partner/">See how one-partner technology works →</a>
+    </div>
+  </section>
+
+  {/* Section 6 — Proof */}
+  <section class="section">
+    <div class="container">
+      <h2>Results our clients talk about</h2>
+      <div class="grid grid--2">
+        <TestimonialCard
+          class="reveal"
+          quote="In a competitive environment, Sam has been able to achieve miracles with our search ranking and despite numerous technical issues on our side, has been able to meet the objectives outlined in his initial proposal. We will be engaging Sam to continue the work and provide our ongoing SEO maintenance."
+          name="John Hawkins"
+          role="Director, Green Gem Investments"
+        />
+        <TestimonialCard
+          class="reveal"
+          quote="I would highly recommend Sam for any web development work or search engine optimisation … excellent work, and the best guy to get you on the front page of Google search."
+          name="Ali Miller"
+          role="Owner and Designer, PixelJam Design"
+        />
+      </div>
+      {/* TODO [ACTION]: before/after marketing case study with real numbers
+          (awaiting Jackie/Wilma) — slot reserved here; do not invent figures. */}
+    </div>
+  </section>
+
+  {/* Section 7 — FAQ */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>Digital marketing — common questions</h2>
+      <FAQ faqs={faqs} />
+    </div>
+  </section>
+
+  {/* Section 8 — CTA banner */}
+  <CTABanner
+    heading="Find out what your marketing is actually returning"
+    body="Book a free marketing review — we’ll audit your search presence, ads and tracking, and give you a plain-English report you keep."
+    primaryLabel="Book a Free Marketing Review"
+    primaryHref="/contact/?service=marketing"
+    secondaryLabel={SITE.phone}
+  />
+</Base>
+
+<style>
+  h2 { margin-bottom: var(--s-6); }
+  .one-partner-body { max-width: 68ch; margin-bottom: var(--s-5); }
+  .one-partner-link { font-weight: 600; text-decoration: none; }
+  .one-partner-link:hover { text-decoration: underline; }
+</style>

@@ -1,0 +1,137 @@
+---
+/**
+ * Base layout — head, fonts, sitewide schema, header, footer.
+ * Page titles/metas must match the SEO master sheet §4 exactly.
+ */
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Page-specific JSON-LD objects (Service, FAQPage, BreadcrumbList…) */
+  schema?: object[];
+  ogType?: string;
+  noindex?: boolean;
+}
+
+const { title, description, schema = [], ogType = 'website', noindex = false } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+/* Sitewide Organization + LocalBusiness schema (SEO master sheet §6).
+   NAP here must stay identical to footer, Contact page and GBP. */
+const siteSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE.url}/#organization`,
+      name: SITE.name,
+      url: `${SITE.url}/`,
+      telephone: SITE.phone,
+      foundingDate: String(SITE.foundingYear),
+      logo: `${SITE.url}/images/online-consulting-logo.png`,
+      sameAs: [SITE.social.linkedin, SITE.social.facebook],
+    },
+    {
+      '@type': 'LocalBusiness',
+      '@id': `${SITE.url}/#localbusiness`,
+      name: SITE.name,
+      url: `${SITE.url}/`,
+      telephone: SITE.phone,
+      image: `${SITE.url}/images/online-consulting-logo.png`,
+      priceRange: '$$',
+      address: {
+        '@type': 'PostalAddress',
+        // TODO [PLACEHOLDER]: add streetAddress once publish decision confirmed
+        addressLocality: SITE.locality,
+        addressRegion: SITE.region,
+        postalCode: SITE.postcode,
+        addressCountry: SITE.country,
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: SITE.geo.lat,
+        longitude: SITE.geo.lng,
+      },
+      areaServed: ['Sydney', 'Northern Beaches'],
+      parentOrganization: { '@id': `${SITE.url}/#organization` },
+    },
+    ...schema,
+  ],
+};
+---
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta name="twitter:card" content="summary" />
+
+    {/* Fonts: Manrope (headings) + Inter (body), font-display: swap.
+        TODO (perf): consider self-hosting woff2 + <link rel="preload"> of the
+        two primary weights for the final Lighthouse pass. */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    {/* Scroll reveal — fade-up 12px / 300ms / once / 60ms stagger in grids.
+        prefers-reduced-motion is handled in CSS (reveal disabled). */}
+    <script>
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const els = document.querySelectorAll('.reveal');
+      if (!reduced && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              const el = entry.target as HTMLElement;
+              const parent = el.parentElement;
+              if (parent) {
+                const siblings = Array.from(parent.children).filter((c) =>
+                  c.classList.contains('reveal')
+                );
+                const i = siblings.indexOf(el);
+                if (i > 0) el.style.transitionDelay = `${Math.min(i * 60, 360)}ms`;
+              }
+              el.classList.add('is-visible');
+              io.unobserve(el);
+            }
+          },
+          { threshold: 0.12 }
+        );
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
+  </body>
+</html>

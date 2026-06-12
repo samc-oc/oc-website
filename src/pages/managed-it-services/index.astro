@@ -1,0 +1,280 @@
+---
+/** Managed IT Services pillar — online-consulting-managed-it-pillar.md (final copy).
+ *  301 from /service/it-support/ lives in public/_redirects. */
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import PartnerBar from '../../components/PartnerBar.astro';
+import ProblemSolution from '../../components/ProblemSolution.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import Icon from '../../components/Icon.astro';
+import Steps from '../../components/Steps.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { PARTNERS, SITE } from '../../lib/site';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '../../lib/schema';
+
+const title = 'Managed IT Services Sydney | 18 Years | Online Consulting';
+const description =
+  'Managed IT services for Sydney businesses — responsive helpdesk, cybersecurity, cloud and networking from one local team. Book a free IT review.';
+
+const breadcrumb = [{ label: 'Home', href: '/' }, { label: 'Managed IT Services' }];
+
+const services = [
+  {
+    icon: 'headset',
+    title: 'IT Support & Helpdesk',
+    body: 'Fast, friendly support by phone, email or remote session — plus on-site visits across Sydney when hands-on help is needed.',
+    href: '/managed-it-services/it-support/',
+  },
+  {
+    icon: 'shield-check',
+    title: 'Cybersecurity',
+    body: 'Sophos-backed endpoint protection, email security, patching and backups — with staff awareness built in.',
+    href: '/managed-it-services/cybersecurity/',
+  },
+  {
+    icon: 'cloud',
+    title: 'Cloud Services',
+    body: 'Microsoft 365 and Google Workspace setup, migration and management from a certified partner of both.',
+    href: '/managed-it-services/cloud-services/',
+  },
+  {
+    icon: 'wifi',
+    title: 'Networking & Infrastructure',
+    body: 'Ubiquiti UniFi networks designed, installed and monitored — Wi-Fi that just works, in the office and beyond.',
+    href: '/managed-it-services/networking/',
+  },
+  {
+    icon: 'wrench',
+    title: 'Computer Repairs',
+    body: 'Fast hardware diagnosis and repair to get your people back up and running.',
+    href: '/managed-it-services/computer-repairs/',
+  },
+];
+
+const extras = [
+  {
+    icon: 'eye',
+    title: 'Proactive monitoring & maintenance',
+    body: 'We monitor your systems 24/7 and fix small issues before they become outages.',
+  },
+  {
+    icon: 'file-text',
+    title: 'Vendor & licence management',
+    body: 'We deal with your software vendors, ISPs and licensing so you don’t have to.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Free IT review.',
+    body: 'We assess your current environment — warts and all — and give you a plain-English report you keep, whatever you decide.',
+  },
+  {
+    title: 'Quiet handover.',
+    body: 'We deal with your outgoing provider, document everything, and migrate with minimal disruption to your team.',
+  },
+  {
+    title: 'Day-one support.',
+    body: 'Your staff get our number, we get to work, and within weeks it feels like we’ve always been there.',
+  },
+];
+
+const faqs: Faq[] = [
+  {
+    q: 'What do managed IT services cost in Sydney?',
+    a: 'Most providers, including us, price as a fixed monthly fee per user or per device, depending on the level of cover. We’ll give you a clear fixed quote after a free IT review — no surprises, no hidden project fees, no surprise invoices.',
+  },
+  {
+    q: 'We already have an IT person. Can you still help?',
+    a: 'Yes — our co-managed option supports internal IT staff with overflow helpdesk, security expertise and project capacity. Many of our clients work this way.',
+  },
+  {
+    q: 'How fast do you respond?',
+    a: 'We target a two-hour response during business hours. After-hours support is available at a premium rate, with an eight-hour response target — and because we monitor systems 24/7 as standard, many issues are caught and fixed before anyone needs to call.',
+  },
+  {
+    q: 'Do you support both Microsoft 365 and Google Workspace?',
+    a: 'Yes — we’re certified partners of both Microsoft and Google, so we recommend what’s right for your business rather than what we happen to sell.',
+  },
+  {
+    q: 'Is switching IT providers disruptive?',
+    a: 'It shouldn’t be. We handle the handover with your outgoing provider directly and migrate in stages, so your team keeps working throughout.',
+  },
+  {
+    q: 'Where do you provide on-site support?',
+    a: 'Across Sydney — we started on the Northern Beaches 18 years ago and now support businesses from the Beaches to the CBD and beyond.',
+  },
+];
+
+const schema = [
+  serviceSchema({ name: 'Managed IT Services', description, path: '/managed-it-services/' }),
+  breadcrumbSchema(breadcrumb),
+  faqSchema(faqs),
+];
+---
+<Base title={title} description={description} schema={schema}>
+  {/* Section 1 — Hero */}
+  <Hero
+    h1="Managed IT services Sydney businesses can actually rely on"
+    subhead="Responsive helpdesk, proactive monitoring, cybersecurity and cloud — delivered by a Sydney team that’s been keeping local businesses running for 18 years."
+    breadcrumb={breadcrumb}
+    primary={{ label: 'Book a Free IT Review', href: '/contact/?service=managed-it' }}
+    secondary={{ label: `Call ${SITE.phone}`, href: SITE.phoneHref }}
+    trust={[
+      '18 years in business',
+      '500+ endpoints managed',
+      '24/7 monitoring',
+      '2-hour response in business hours',
+    ]}
+  />
+
+  {/* Section 2 — Partner strip (IT credentials only) */}
+  <PartnerBar logos={PARTNERS.it} microtext="Certified across the platforms your business runs on" />
+
+  {/* Section 3 — The problem we solve */}
+  <section class="section">
+    <div class="container">
+      <h2>IT shouldn’t be the thing slowing your business down</h2>
+      <ProblemSolution
+        leftTitle="Sound familiar?"
+        rightTitle="How it should work"
+        left={[
+          'Tickets disappear into a queue and nobody calls back',
+          'Every problem means juggling three different suppliers',
+          'Security is “probably fine” — but no one’s actually checked',
+          'You’re paying for IT but still doing the chasing',
+        ]}
+        right={[
+          'One Sydney number, answered by people who know your setup',
+          'One team across your IT, security, network and cloud',
+          'Security monitored and patched as standard, not as an extra',
+          'We chase the problems. You run your business.',
+        ]}
+      />
+    </div>
+  </section>
+
+  {/* Section 4 — What's included */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>Everything a managed IT partner should cover</h2>
+      <div class="grid grid--3">
+        {services.map((s) => (
+          <ServiceCard icon={s.icon} title={s.title} href={s.href} linkLabel={`Explore ${s.title}`} class="reveal">
+            {s.body}
+          </ServiceCard>
+        ))}
+        {extras.map((s) => (
+          <article class="card reveal extra-card">
+            <Icon name={s.icon} size={28} />
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Section 5 — Fully managed or co-managed */}
+  <section class="section">
+    <div class="container">
+      <h2>Built around how your business works</h2>
+      <div class="grid grid--2">
+        <article class="card reveal">
+          <h3>Fully managed IT</h3>
+          <p>
+            No internal IT? We become your IT department — strategy, support, security and
+            procurement, end to end. Your team gets one number to call; you get one partner
+            accountable for everything.
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3>Co-managed IT</h3>
+          <p>
+            Already have internal IT staff? We work alongside them — covering the helpdesk
+            overflow, the after-hours cover, the specialist security work, or the projects they
+            don’t have time for.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {/* Section 6 — The one-partner advantage (navy) */}
+  <section class="section section--navy">
+    <div class="container">
+      <h2>Your IT partner shouldn’t stop at IT</h2>
+      <p class="one-partner-body">
+        Most MSPs manage your systems and nothing else. We also build websites and run digital
+        marketing in-house — which means your website, hosting, email, network and cloud can all
+        sit under one roof, with one security standard and one team accountable for all of it.
+        Fewer vendors with access to your systems. Fewer gaps between them.
+      </p>
+      <a class="one-partner-link" href="/why-one-partner/">See how one-partner technology works →</a>
+    </div>
+  </section>
+
+  {/* Section 7 — Switching */}
+  <section class="section section--white">
+    <div class="container">
+      <h2 class="center switching-heading">Changing IT providers without the drama</h2>
+      <Steps steps={steps} />
+      <div class="center switching-cta">
+        <a class="btn btn--primary" href="/contact/?service=managed-it">Book a Free IT Review</a>
+      </div>
+    </div>
+  </section>
+
+  {/* Section 8 — Social proof */}
+  <section class="section">
+    <div class="container">
+      <h2>What Sydney businesses say about working with us</h2>
+      <div class="grid grid--2">
+        <TestimonialCard
+          class="reveal"
+          quote="Sam is a reliable and knowledgeable IT consultant who has a clear understanding of the needs of small businesses … Sam can explain IT security and software in terms that anyone can understand, and is proactive in suggesting how to avoid problems in the future … Sam has managed my website and IT for several years and we’ve been very happy with him and his team."
+          name="Cathy Curtis"
+          role="Owner, You & Eye Optical"
+        />
+        <TestimonialCard
+          class="reveal"
+          quote="All my issues are solved quickly first time — technology is great but when it fails it’s highly frustrating. I’m glad you are always there to help."
+          name="Simon Hardaker"
+          role="Business Owner, Astemi Property"
+        />
+      </div>
+      {/* TODO [ACTION]: client logo row (permission-confirmed logos) */}
+    </div>
+  </section>
+
+  {/* Section 9 — FAQ */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>Managed IT services — common questions</h2>
+      <FAQ faqs={faqs} />
+    </div>
+  </section>
+
+  {/* Section 10 — Final CTA */}
+  <CTABanner
+    heading="Find out where your IT really stands"
+    body="Book a free, no-obligation IT review. You’ll get an honest assessment of your systems, security and costs — and a report that’s yours to keep."
+    primaryHref="/contact/?service=managed-it"
+    secondaryLabel={SITE.phone}
+  />
+</Base>
+
+<style>
+  h2 { margin-bottom: var(--s-6); }
+
+  .extra-card { display: flex; flex-direction: column; gap: var(--s-3); }
+
+  .one-partner-body { max-width: 68ch; margin-bottom: var(--s-5); }
+  .one-partner-link { font-weight: 600; text-decoration: none; }
+  .one-partner-link:hover { text-decoration: underline; }
+
+  .switching-heading { margin-bottom: var(--s-7); }
+  .switching-cta { margin-top: var(--s-7); }
+</style>

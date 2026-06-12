@@ -1,0 +1,124 @@
+---
+/** About (Our Story) — supporting-pages deck (final copy). */
+import Base from '../layouts/Base.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import TeamCard from '../components/TeamCard.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { breadcrumbSchema } from '../lib/schema';
+
+const title = 'About Online Consulting | Sydney IT Firm Since 2008';
+const description =
+  'Founded on the Northern Beaches in 2008, Online Consulting is the Sydney technology firm where IT support, web development and digital marketing live under one roof.';
+
+const beliefs = [
+  {
+    title: 'Plain English, always.',
+    body: 'If you need a translator to talk to your IT firm, you have the wrong IT firm.',
+  },
+  {
+    title: 'The fairest solution, not the biggest invoice.',
+    body: 'We pride ourselves on the right fix at the fair price — and if we don’t know something, we’ll learn it for you.',
+  },
+  {
+    title: 'Accountability over excuses.',
+    body: 'If it’s your technology, it’s our responsibility. No “not our system.”',
+  },
+];
+
+const team = [
+  { name: 'Sam Crawford', role: 'Managing Director' },
+  { name: 'Wilma Amposta', role: 'General Manager' },
+  { name: 'Jeff Ernacio', role: 'Help Desk Manager' },
+];
+---
+<Base title={title} description={description} schema={[breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'About' }])]}>
+  <section class="hero-typographic">
+    <div class="container">
+      <h1>Eighteen years of making technology someone else’s problem — ours</h1>
+    </div>
+  </section>
+
+  {/* The story */}
+  <section class="section section--white">
+    <div class="container story">
+      <p>
+        Online Consulting started in Allambie Heights on Sydney’s Northern Beaches in 2008,
+        fixing computers and untangling networks for local businesses. The work taught us
+        something that’s shaped the firm ever since: businesses don’t have “IT problems” and
+        “website problems” and “marketing problems.” They have technology — and it works best
+        when one team is responsible for all of it.
+      </p>
+      <p>
+        So instead of staying in one lane, we built the others in-house. Today we manage IT,
+        security and cloud for businesses across Sydney, and we build, host and market their
+        websites with the same team and the same standards.
+      </p>
+      <p>
+        Eighteen years and 500+ managed endpoints later, the model is the message: one partner,
+        one number, one team that’s accountable for everything your business runs on.
+      </p>
+    </div>
+  </section>
+
+  {/* What we believe */}
+  <section class="section">
+    <div class="container">
+      <h2>What we believe</h2>
+      <div class="grid grid--3">
+        {beliefs.map((b) => (
+          <article class="card reveal">
+            <h3>{b.title}</h3>
+            <p>{b.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Stats strip */}
+  <section class="section section--white stats-section">
+    <div class="container">
+      <TrustStrip
+        items={[
+          'Founded 2008',
+          '500+ endpoints managed',
+          'Microsoft, Google, Sophos, UniFi, Adobe & Shopify partners',
+          'Allambie Heights, Sydney',
+        ]}
+      />
+    </div>
+  </section>
+
+  {/* Team teaser */}
+  <section class="section">
+    <div class="container">
+      <h2>The team behind the helpdesk</h2>
+      <div class="grid grid--3">
+        {team.map((member) => (
+          <TeamCard name={member.name} role={member.role} />
+        ))}
+      </div>
+      <p class="team-link"><a href="/people/">Meet the whole team →</a></p>
+    </div>
+  </section>
+
+  <CTABanner heading="Get to know the team behind the helpdesk" />
+</Base>
+
+<style>
+  .hero-typographic { background: var(--bg); padding-block: var(--section-pad-lg); }
+  .hero-typographic h1 { max-width: 24ch; }
+
+  h2 { margin-bottom: var(--s-6); }
+
+  .story { max-width: 720px; }
+  .story p { margin-bottom: var(--s-5); font-size: var(--body-lg); }
+
+  .stats-section { padding-block: var(--s-7); }
+
+  .card h3 { font-size: var(--h4); margin-bottom: var(--s-3); }
+
+  .team-link { margin-top: var(--s-5); }
+  .team-link a { font-weight: 600; text-decoration: none; }
+  .team-link a:hover { text-decoration: underline; }
+</style>

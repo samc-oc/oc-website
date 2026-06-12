@@ -1,0 +1,65 @@
+---
+/** Our Work — supporting-pages deck.
+ *  TODO [ACTION]: project grid awaiting Jackie and Wilma's nominations — old
+ *  /work/ projects are NOT to be reused; each featured client must confirm
+ *  permission. Case study slot reserved — do not invent figures. */
+import Base from '../layouts/Base.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { breadcrumbSchema } from '../lib/schema';
+
+const title = 'Our Work | Web & Technology Projects | Online Consulting';
+const description =
+  'Recent websites, online stores and technology projects by Online Consulting — built, hosted and supported by our Sydney team.';
+---
+<Base title={title} description={description} schema={[breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'Our Work' }])]}>
+  <section class="hero-typographic">
+    <div class="container">
+      <h1>Recent work we’re proud to put our name on</h1>
+      <p class="lead">
+        A selection of recent projects — and because we host and maintain what we build, every
+        one of these is still our responsibility today.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      {/* Project grid — 4–6 cards: screenshot · client name · one-line scope ·
+          link. Slots reserved below until nominations land. */}
+      <div class="grid grid--3">
+        <PhotoPlaceholder label="[Project slot 1 — awaiting nomination + client permission]" ratio="16 / 10" />
+        <PhotoPlaceholder label="[Project slot 2 — awaiting nomination + client permission]" ratio="16 / 10" />
+        <PhotoPlaceholder label="[Project slot 3 — awaiting nomination + client permission]" ratio="16 / 10" />
+        <PhotoPlaceholder label="[Project slot 4 — awaiting nomination + client permission]" ratio="16 / 10" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Featured case study</h2>
+      {/* TODO [ACTION]: one marketing case study with real numbers (Jackie/
+          Wilma). Do not invent figures. */}
+      <p class="case-placeholder small">
+        [Slot reserved: marketing case study with verified before/after figures]
+      </p>
+    </div>
+  </section>
+
+  <CTABanner heading="Want yours on this page?" primaryLabel="Book a Free Website Review" primaryHref="/contact/?service=web" />
+</Base>
+
+<style>
+  .hero-typographic { background: var(--bg); padding-block: var(--section-pad-lg); }
+  .hero-typographic .lead { margin-top: var(--s-5); max-width: 58ch; }
+
+  h2 { margin-bottom: var(--s-5); }
+
+  .case-placeholder {
+    border: 1px dashed #CBD5E1;
+    border-radius: var(--r-card);
+    padding: var(--s-6);
+    background: var(--surface);
+  }
+</style>

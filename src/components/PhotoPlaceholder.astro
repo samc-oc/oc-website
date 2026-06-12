@@ -1,0 +1,34 @@
+---
+/**
+ * Photography placeholder.
+ * TODO [ACTION]: replace with real team/office photography once the half-day
+ * shoot happens (design system §3 — no generic stock, ever).
+ * Drop final images in /public/images/ and swap this component for <img>
+ * with a descriptive filename + alt text (SEO master sheet §6).
+ */
+interface Props {
+  label: string;
+  ratio?: string;
+  class?: string;
+}
+const { label, ratio = '4 / 3', class: className = '' } = Astro.props;
+---
+<div class={`media-placeholder ${className}`} style={`aspect-ratio: ${ratio};`} role="img" aria-label={label}>
+  <span class="small">{label}</span>
+</div>
+
+<style>
+  .media-placeholder {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    border-radius: var(--r-card);
+    background:
+      linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(6, 182, 212, 0.10)),
+      var(--surface);
+    border: 1px dashed #CBD5E1;
+    text-align: center;
+    padding: var(--s-4);
+  }
+  .media-placeholder span { color: var(--text); max-width: 30ch; }
+</style>

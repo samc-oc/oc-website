@@ -1,0 +1,163 @@
+---
+/**
+ * Footer — navy, four columns (home page deck §10).
+ * NAP must stay identical to Contact page, schema and GBP.
+ */
+import Icon from './Icon.astro';
+import { FOOTER_COLUMNS, SITE } from '../lib/site';
+
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        {/* TODO [ACTION]: replace text wordmark with logo asset (white variant) */}
+        <a class="footer-logo" href="/" aria-label="Online Consulting — home">
+          <span class="footer-logo-mark" aria-hidden="true">OC</span>
+          <span>Online Consulting</span>
+        </a>
+        <p class="footer-tagline">
+          Sydney-based IT services &amp; support — Northern Beaches to the CBD.
+        </p>
+        <p class="footer-contact">
+          <Icon name="map-pin" size={16} class="on-navy" />
+          <span>{SITE.locality} {SITE.region}</span>
+        </p>
+        <p class="footer-contact">
+          <Icon name="phone" size={16} class="on-navy" />
+          <a href={SITE.phoneHref}>{SITE.phone}</a>
+        </p>
+        {/* TODO [ACTION]: add Google Partner badge image (link below is live) */}
+        <p class="footer-badge">
+          <a href={SITE.googlePartnerUrl} rel="noopener">Google Partner</a>
+        </p>
+        {/* TODO [PLACEHOLDER]: ABN to be confirmed — render here once supplied */}
+      </div>
+
+      {FOOTER_COLUMNS.map((col) => (
+        <nav class="footer-col" aria-label={col.heading}>
+          <h2 class="footer-heading">{col.heading}</h2>
+          <ul>
+            {col.links.map((link) => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+      ))}
+    </div>
+
+    <div class="footer-bottom">
+      <p class="small">© {year} Online Consulting. All rights reserved.</p>
+      <div class="footer-social">
+        <a href={SITE.social.linkedin} rel="noopener" aria-label="Online Consulting on LinkedIn">
+          <Icon name="linkedin" size={20} class="on-navy" />
+        </a>
+        <a href={SITE.social.facebook} rel="noopener" aria-label="Online Consulting on Facebook">
+          <Icon name="facebook" size={20} class="on-navy" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--navy);
+    color: var(--text-on-dark);
+    padding-block: var(--s-8) var(--s-5);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: var(--s-7);
+  }
+
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .footer-logo-mark {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 13px;
+  }
+
+  .footer-tagline { margin-block: var(--s-4); font-size: var(--small); }
+
+  .footer-contact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: var(--s-2);
+    font-size: var(--small);
+  }
+  .footer-contact a { color: var(--text-on-dark); text-decoration: none; }
+  .footer-contact a:hover { color: #fff; }
+
+  .footer-badge { margin-top: var(--s-4); font-size: var(--small); }
+  .footer-badge a { color: var(--text-on-dark); }
+  .footer-badge a:hover { color: #fff; }
+
+  .footer-heading {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--small);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #fff;
+    margin-bottom: var(--s-4);
+  }
+
+  .footer-col ul { list-style: none; margin: 0; padding: 0; }
+  .footer-col li { margin-bottom: var(--s-2); }
+  .footer-col a {
+    display: inline-block;
+    padding-block: 3px;
+    color: var(--text-on-dark);
+    text-decoration: none;
+    font-size: var(--small);
+  }
+  .footer-col a:hover { color: #fff; text-decoration: underline; }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    margin-top: var(--s-8);
+    padding-top: var(--s-5);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .footer-bottom .small { color: var(--text-on-dark); }
+
+  .footer-social { display: flex; gap: var(--s-3); }
+  .footer-social a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    color: var(--text-on-dark);
+  }
+  .footer-social a:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+
+  @media (max-width: 1024px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .footer-grid { grid-template-columns: 1fr; gap: var(--s-6); }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>

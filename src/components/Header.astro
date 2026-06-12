@@ -1,0 +1,345 @@
+---
+/**
+ * Sticky header — design system §2.
+ * White, 72px, soft shadow on scroll. Logo left · nav centre (dropdowns) ·
+ * phone + primary CTA right. Mobile: hamburger, phone icon stays visible.
+ * Dropdowns keyboard-navigable (arrows, Esc closes).
+ */
+import Icon from './Icon.astro';
+import { NAV, SITE } from '../lib/site';
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    {/* TODO [ACTION]: replace text wordmark with the Online Consulting logo
+        asset (SVG preferred) in /public/images/ */}
+    <a class="logo" href="/" aria-label="Online Consulting — home">
+      <span class="logo-mark" aria-hidden="true">OC</span>
+      <span class="logo-text">Online&nbsp;Consulting</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul class="nav-list" id="nav-list">
+        {NAV.map((item, i) => (
+          <li class={`nav-item ${item.children ? 'has-children' : ''}`}>
+            {item.children ? (
+              <>
+                <a
+                  class={`nav-link ${isActive(item.href) ? 'is-active' : ''}`}
+                  href={item.href}
+                  aria-current={isActive(item.href) ? 'true' : undefined}
+                >{item.label}</a>
+                <button
+                  class="nav-disclosure"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls={`submenu-${i}`}
+                  aria-label={`${item.label} submenu`}
+                >
+                  <Icon name="chevron-down" size={16} />
+                </button>
+                <ul class="submenu" id={`submenu-${i}`}>
+                  {item.children.map((child) => (
+                    <li>
+                      <a
+                        class="submenu-link"
+                        href={child.href}
+                        aria-current={currentPath === child.href ? 'page' : undefined}
+                      >{child.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <a
+                class={`nav-link ${isActive(item.href) ? 'is-active' : ''}`}
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >{item.label}</a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-phone" href={SITE.phoneHref}>
+        <Icon name="phone" size={18} />
+        <span class="header-phone-number">{SITE.phone}</span>
+      </a>
+      <a class="btn btn--primary header-cta" href="/contact/">Book a Free IT Review</a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-list"
+        aria-label="Open menu"
+      >
+        <span class="nav-toggle-open"><Icon name="menu" size={26} /></span>
+        <span class="nav-toggle-close"><Icon name="x" size={26} /></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    transition: box-shadow 150ms ease;
+  }
+  .site-header.is-scrolled { box-shadow: var(--shadow-header); }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--s-5);
+    height: 72px;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .logo-mark {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--navy);
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+  .logo-text {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+
+  .main-nav { flex: 1; display: flex; justify-content: center; }
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-item { position: relative; display: flex; align-items: center; }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    text-decoration: none;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+  .nav-link:hover, .nav-link.is-active { color: var(--blue); }
+
+  .nav-disclosure {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 44px;
+    margin-left: -6px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--navy);
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  .nav-disclosure :global(svg) { transition: transform 150ms ease; color: inherit; }
+  .nav-disclosure[aria-expanded='true'] :global(svg) { transform: rotate(180deg); }
+
+  .submenu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 260px;
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card-hover);
+    display: none;
+  }
+  .nav-item.is-open .submenu { display: block; }
+
+  .submenu-link {
+    display: block;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    text-decoration: none;
+    border-radius: 8px;
+  }
+  .submenu-link:hover,
+  .submenu-link[aria-current='page'] { background: var(--bg); color: var(--blue); }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .header-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .header-phone:hover { color: var(--blue); }
+
+  .nav-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--navy);
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  .nav-toggle-close { display: none; }
+  .nav-toggle[aria-expanded='true'] .nav-toggle-open { display: none; }
+  .nav-toggle[aria-expanded='true'] .nav-toggle-close { display: inline-flex; }
+
+  /* ---- Mobile (≤1024px): hamburger, phone icon persists ---- */
+  @media (max-width: 1024px) {
+    .header-cta { display: none; }
+    .header-phone-number { display: none; }
+    .nav-toggle { display: inline-flex; }
+
+    .main-nav {
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      box-shadow: var(--shadow-card-hover);
+      display: none;
+      max-height: calc(100vh - 72px);
+      overflow-y: auto;
+    }
+    .site-header.nav-open .main-nav { display: block; }
+
+    .nav-list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: var(--s-3) var(--s-4) var(--s-5);
+    }
+    .nav-item { flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+    .nav-item:last-child { border-bottom: none; }
+    .nav-link { flex: 1; padding: 14px 8px; font-size: 16px; }
+    .submenu {
+      position: static;
+      display: none;
+      box-shadow: none;
+      padding: 0 0 var(--s-3) var(--s-4);
+      width: 100%;
+    }
+    .nav-item.is-open .submenu { display: block; }
+  }
+</style>
+
+<script>
+  const header = document.getElementById('site-header')!;
+
+  /* Soft shadow appears on scroll */
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 4);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* Mobile hamburger */
+  const toggle = header.querySelector<HTMLButtonElement>('.nav-toggle')!;
+  toggle.addEventListener('click', () => {
+    const open = header.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  /* Dropdowns: click toggles; Esc closes; arrow keys traverse; outside click closes */
+  const items = Array.from(header.querySelectorAll<HTMLElement>('.nav-item.has-children'));
+
+  const closeAll = (except?: HTMLElement) => {
+    for (const item of items) {
+      if (item === except) continue;
+      item.classList.remove('is-open');
+      item.querySelector('.nav-disclosure')?.setAttribute('aria-expanded', 'false');
+    }
+  };
+
+  for (const item of items) {
+    const btn = item.querySelector<HTMLButtonElement>('.nav-disclosure')!;
+    const links = Array.from(item.querySelectorAll<HTMLAnchorElement>('.submenu-link'));
+
+    btn.addEventListener('click', () => {
+      const open = item.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(open));
+      closeAll(item);
+      if (open) links[0]?.focus();
+    });
+
+    item.addEventListener('keydown', (e) => {
+      const ke = e as KeyboardEvent;
+      if (ke.key === 'Escape') {
+        item.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.focus();
+      } else if (ke.key === 'ArrowDown' || ke.key === 'ArrowUp') {
+        if (!item.classList.contains('is-open')) return;
+        const i = links.indexOf(document.activeElement as HTMLAnchorElement);
+        if (i === -1) return;
+        ke.preventDefault();
+        const next = ke.key === 'ArrowDown' ? Math.min(i + 1, links.length - 1) : Math.max(i - 1, 0);
+        links[next].focus();
+      }
+    });
+
+    /* Close when focus leaves the item (keyboard users tabbing away) */
+    item.addEventListener('focusout', (e) => {
+      const fe = e as FocusEvent;
+      if (!item.contains(fe.relatedTarget as Node)) {
+        item.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!header.contains(e.target as Node)) closeAll();
+  });
+</script>

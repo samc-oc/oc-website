@@ -1,0 +1,16 @@
+{
+  "name": "onlineconsulting-website",
+  "version": "1.0.0",
+  "description": "Online Consulting — onlineconsulting.com.au (Astro static site)",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^6.4.5",
+    "@astrojs/sitemap": "^3.7.3",
+    "lucide-static": "^1.17.0"
+  }
+}

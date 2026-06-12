@@ -1,0 +1,280 @@
+---
+/**
+ * Why One Partner — keystone positioning page. Every service page links here;
+ * it must exist before any other page goes live (deck developer notes).
+ * NO FAQPage schema on this page (Section 6 is editorial by design).
+ */
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SprawlDiagram from '../components/SprawlDiagram.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CTABanner from '../components/CTABanner.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import { breadcrumbSchema } from '../lib/schema';
+import { SITE } from '../lib/site';
+
+const title = 'One Partner for IT, Web & Marketing | Online Consulting';
+const description =
+  'Fewer vendors, fewer gaps, stronger security. See why Sydney businesses consolidate their IT, website and marketing with one accountable firm.';
+
+const securityPoints = [
+  {
+    icon: 'key-round',
+    title: 'Forgotten access.',
+    body: 'The web agency from two years ago still has your hosting login. The freelancer still admins your Facebook. Who’s auditing that?',
+  },
+  {
+    icon: 'triangle-alert',
+    title: 'No common standard.',
+    body: 'Your IT provider enforces MFA; your hosting reseller doesn’t. Your security is whatever the weakest vendor does.',
+  },
+  {
+    icon: 'shield-check',
+    title: 'The unpatched middle.',
+    body: 'The website nobody maintains is the classic way in — it’s connected to your email, your data and your reputation.',
+  },
+  {
+    icon: 'timer',
+    title: 'Slow incident response.',
+    body: 'When something’s breached at 4pm Friday, four vendors means four support queues deciding whose problem it is.',
+  },
+];
+
+const objections = [
+  {
+    q: '“Aren’t we putting all our eggs in one basket?”',
+    a: 'You’re putting them in one accountable basket — with full documentation. You own your domain, your accounts, your data and your licences; we hold them in your name, never ours. If you ever leave, everything is documented and handover is clean. We’ve been here 18 years; we keep clients with results, not hostage-taking.',
+  },
+  {
+    q: '“Can one firm really be good at IT and marketing and web?”',
+    a: 'They’re in-house teams, not one person wearing hats — and they’re disciplines that genuinely strengthen each other: marketing built on solid tracking, websites built on secure infrastructure, IT that understands what the business is trying to achieve. Where something truly specialist is needed, we say so.',
+  },
+  {
+    q: '“Do we have to move everything at once?”',
+    a: 'No — almost nobody does. Most clients start with one service, usually managed IT, and consolidate the rest as contracts and renewals come up. We’ll map a sensible sequence in your free review.',
+  },
+];
+---
+<Base title={title} description={description} schema={[breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'Why One Partner' }])]}>
+  {/* Section 1 — Hero: typographic, no photo — let the argument lead */}
+  <section class="hero-typographic">
+    <div class="container">
+      <h1>Every part of your technology. One firm that owns it.</h1>
+      <p class="lead">
+        Most Sydney businesses run on five or six disconnected technology vendors. Here’s why
+        that’s slower, riskier and more expensive than it looks — and what one accountable
+        partner changes.
+      </p>
+      <a class="btn btn--primary" href="/contact/">Book a Free IT Review</a>
+    </div>
+  </section>
+
+  {/* Section 2 — The sprawl */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>Count your technology vendors</h2>
+      <div class="sprawl-copy">
+        <p>
+          An IT company for support. A web agency that built the site two years ago. A hosting
+          reseller you pay annually and never speak to. A marketing agency running ads. A
+          freelancer who “does the socials.” Maybe a cousin who registered the domain.
+        </p>
+        <p>
+          Each one seemed like the right call at the time. Together, they’re a system nobody
+          designed — and nobody owns.
+        </p>
+      </div>
+      <SprawlDiagram />
+    </div>
+  </section>
+
+  {/* Section 3 — The security argument (navy — the heart of the page) */}
+  <section class="section section--navy">
+    <div class="container">
+      <h2>Vendor sprawl is a security problem, not just an admin problem</h2>
+      <p class="lead security-lead">
+        Every vendor with access to your systems is a set of credentials you don’t control, on
+        devices you’ve never seen, held by staff you’ve never met. The more firms hold keys, the
+        more doors there are — and the gaps <em>between</em> vendors are exactly where security
+        fails.
+      </p>
+      <ul class="security-grid">
+        {securityPoints.map((point) => (
+          <li class="reveal">
+            <Icon name={point.icon} size={28} class="on-navy" />
+            <div>
+              <h3>{point.title}</h3>
+              <p>{point.body}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p class="security-close">
+        With one partner, one security standard covers everything — network, email, cloud,
+        website, hosting — and one team is accountable for all of it. We monitor it 24/7,
+        because all of it is ours to protect.
+      </p>
+    </div>
+  </section>
+
+  {/* Section 4 — The accountability argument */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>“Not our system” — the four words that cost you the most</h2>
+      <p class="accountability-body">
+        When your enquiry form silently breaks, is it the website, the hosting, the email or the
+        DNS? With separate vendors, you’ll spend a week finding out — and pay each of them to
+        investigate the others. With one partner there’s no investigation phase and no blame
+        cycle. If it’s technology and it’s yours, it’s our problem, by definition.
+      </p>
+      <p class="pull-quote">One invoice. One number to call. One team where the buck actually stops.</p>
+    </div>
+  </section>
+
+  {/* Section 5 — The people argument */}
+  <section class="section">
+    <div class="container">
+      <h2>Easier for your staff. Clearer for your stakeholders.</h2>
+      <div class="grid grid--2 people-cols">
+        <div class="card reveal">
+          <h3>For your staff</h3>
+          <p>
+            One helpdesk for every technology question — whether it’s a frozen laptop, a website
+            edit or “why isn’t my email sending?” No routing decisions, no being bounced between
+            suppliers, no problems abandoned because nobody knew who to ask. Things just get
+            fixed, and people get on with their jobs.
+          </p>
+        </div>
+        <div class="card reveal">
+          <h3>For owners and managers</h3>
+          <p>
+            One relationship to manage instead of six. One report covering your whole technology
+            picture. One renewal conversation. One partner who knows your business well enough to
+            suggest what’s next — because we see all of it, not a slice.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Section 6 — Honest objections (editorial — deliberately NOT FAQ markup) */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>“But isn’t all-in-one a risk?” Fair question. Three straight answers.</h2>
+      <ol class="objections">
+        {objections.map((item) => (
+          <li class="reveal">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* Section 7 — Proof */}
+  <section class="section">
+    <div class="container">
+      <h2>What a one-partner relationship looks like after five years</h2>
+      <TestimonialCard
+        featured
+        class="reveal proof-testimonial"
+        quote="Few people have the opportunity to manage contractors that seem like full-time onsite staff … I’ve had the pleasure of working with Sam and his team for five years now and over this time the level of service has been constant … his team go above and beyond desktop support to include sound engineering, website development, photography, videography and so much more."
+        name="Mark Eels"
+        role="Assistant Dean of Students, NYU Shanghai"
+      />
+      <TrustStrip
+        class="proof-stats"
+        items={[
+          '18 years in business',
+          '500+ endpoints managed',
+          'IT, web & marketing in-house',
+          'Microsoft, Google, Sophos, UniFi, Adobe & Shopify partners',
+        ]}
+      />
+    </div>
+  </section>
+
+  {/* Section 8 — What's under the one roof */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>Everything your business runs on</h2>
+      <div class="grid grid--3 roof-grid">
+        <ServiceCard icon="headset" title="Managed IT Services" href="/managed-it-services/" linkLabel="Explore Managed IT Services" class="reveal">
+          Helpdesk, cybersecurity, cloud, networking.
+        </ServiceCard>
+        <ServiceCard icon="monitor" title="Web Development" href="/web-development/" linkLabel="Explore Web Development" class="reveal">
+          Design, build, eCommerce, hosting &amp; care.
+        </ServiceCard>
+        <ServiceCard icon="megaphone" title="Digital Marketing" href="/digital-marketing/" linkLabel="Explore Digital Marketing" class="reveal">
+          SEO, Google Ads, social, content.
+        </ServiceCard>
+      </div>
+    </div>
+  </section>
+
+  {/* Section 9 — Final CTA */}
+  <CTABanner
+    heading="Start with a free IT review. Consolidate at your own pace."
+    body="We’ll map your current vendors, costs and security gaps — and show you what one accountable partner would change. The report is yours to keep, whatever you decide."
+    secondaryLabel={SITE.phone}
+  />
+</Base>
+
+<style>
+  .hero-typographic {
+    background: var(--bg);
+    padding-block: var(--section-pad-lg);
+  }
+  .hero-typographic h1 { max-width: 22ch; }
+  .hero-typographic .lead { margin-block: var(--s-5) var(--s-6); max-width: 60ch; }
+
+  h2 { margin-bottom: var(--s-5); }
+
+  .sprawl-copy { max-width: 64ch; margin-bottom: var(--s-7); }
+  .sprawl-copy p { margin-bottom: var(--s-4); }
+
+  .security-lead { max-width: 68ch; margin-bottom: var(--s-7); }
+
+  .security-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-6);
+    list-style: none;
+    margin: 0 0 var(--s-7);
+    padding: 0;
+  }
+  .security-grid li { display: flex; gap: var(--s-4); align-items: flex-start; }
+  .security-grid h3 { font-size: var(--h4); margin-bottom: var(--s-1); }
+
+  .security-close {
+    max-width: 68ch;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .accountability-body { max-width: 64ch; }
+
+  /* Pull-quote: Manrope ExtraBold ~32–40px, navy on white (deck dev notes) */
+  .pull-quote {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 2vw + 20px, 40px);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    max-width: 24ch;
+    margin-top: var(--s-7);
+  }
+
+  .objections { list-style: none; margin: 0; padding: 0; max-width: 72ch; }
+  .objections li { margin-bottom: var(--s-6); }
+  .objections h3 { font-size: var(--h3); margin-bottom: var(--s-3); }
+
+  .proof-stats { margin-top: var(--s-6); }
+
+  @media (max-width: 768px) {
+    .security-grid { grid-template-columns: 1fr; }
+  }
+</style>

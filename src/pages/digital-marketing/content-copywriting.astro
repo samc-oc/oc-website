@@ -1,0 +1,55 @@
+---
+/** Child — Content & Copywriting (final copy). Absorbs three old URLs:
+ *  /service/copywriting/, /service/photography/, /video/ (301s in _redirects). */
+import ChildPage from '../../layouts/ChildPage.astro';
+
+const faqs = [
+  {
+    q: 'Can you write for a technical or niche industry?',
+    a: 'Yes — we interview you, do the research, and you approve everything before it’s published. After 18 years we’ve written for most industries in Sydney.',
+  },
+  {
+    q: 'Do we own the content?',
+    a: 'Entirely. Copy, photos and footage are yours, with full rights, delivered in formats you can reuse.',
+  },
+];
+---
+<ChildPage
+  title="Copywriting, Photography & Video Sydney | Online Consulting"
+  description="Words, photography and video produced in-house for Sydney businesses — website copy, SEO content and brand visuals that work everywhere you publish."
+  path="/digital-marketing/content-copywriting/"
+  serviceName="Content & Copywriting"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Digital Marketing', href: '/digital-marketing/' },
+    { label: 'Content & Copywriting' },
+  ]}
+  h1="Copy, photography and video — produced in-house, made to work"
+  subhead="Content isn’t decoration; it’s what your website, ads and socials are made of. We write, shoot and edit in-house, so everything matches your brand and lands where it’s needed."
+  trust={['Writers, photographers & video in-house', 'Adobe partner', 'SEO-trained copywriting']}
+  primaryCtaLabel="Book a Free Marketing Review"
+  features={[
+    { icon: 'pen-line', title: 'Website & SEO copywriting', body: 'Pages written to convert visitors and rank for what they search.' },
+    { icon: 'camera', title: 'Business photography', body: 'Your team, premises and products, shot properly (stock photos convince nobody).' },
+    { icon: 'video', title: 'Video', body: 'Brand stories, service explainers and social clips, filmed and edited in-house.' },
+    { icon: 'megaphone', title: 'Campaign & marketing copy', body: 'Ads, emails and brochures with one consistent voice.' },
+  ]}
+  faqs={faqs}
+  ctaHeading="Say it once, properly — then use it everywhere."
+  crossLinksLabel="Also part of Digital Marketing:"
+  crossLinks={[
+    { label: 'Digital Marketing', href: '/digital-marketing/' },
+    { label: 'SEO', href: '/digital-marketing/seo/' },
+    { label: 'Google Ads', href: '/digital-marketing/google-ads/' },
+    { label: 'Social Media Marketing', href: '/digital-marketing/social-media/' },
+  ]}
+>
+  <Fragment slot="why">
+    <p>
+      Because the writers, photographers and marketers sit on one team, your content is planned
+      once and used everywhere — website, Google, socials and ads — instead of being
+      commissioned three times by three vendors.
+      <a href="/why-one-partner/">See how one-partner technology works →</a>
+    </p>
+  </Fragment>
+</ChildPage>

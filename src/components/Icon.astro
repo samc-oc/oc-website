@@ -1,0 +1,31 @@
+---
+/**
+ * Inline Lucide icon. Design system §3: 1.75px stroke, --blue on light /
+ * white on navy (colour via CSS `currentColor` + .icon classes).
+ */
+import { icons } from '../lib/icons';
+
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+  /** Accessible label. Omit for decorative icons (default: aria-hidden). */
+  label?: string;
+}
+
+const { name, size = 24, class: className = '', label } = Astro.props;
+
+let svg = icons[name];
+if (!svg) throw new Error(`Icon "${name}" is not registered in src/lib/icons.ts`);
+
+svg = svg
+  .replace(/\swidth="24"/, ` width="${size}"`)
+  .replace(/\sheight="24"/, ` height="${size}"`)
+  .replace(/\sstroke-width="2"/, ' stroke-width="1.75"')
+  .replace(/\sclass="[^"]*"/, ` class="${`icon ${className}`.trim()}"`)
+  .replace(
+    '<svg',
+    label ? `<svg role="img" aria-label="${label}"` : '<svg aria-hidden="true"'
+  );
+---
+<Fragment set:html={svg} />

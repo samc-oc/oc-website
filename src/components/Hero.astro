@@ -1,0 +1,86 @@
+---
+/**
+ * Hero (§2): off-white bg, H1 + subhead + CTA pair + trust strip.
+ * Optional right-side media (team photography, 16px radius mask) via the
+ * "media" slot; omit for typographic heroes (Why One Partner).
+ */
+import Breadcrumb from './Breadcrumb.astro';
+import TrustStrip from './TrustStrip.astro';
+import type { Crumb } from '../lib/schema';
+
+interface Cta {
+  label: string;
+  href: string;
+}
+interface Props {
+  h1: string;
+  subhead: string;
+  primary?: Cta;
+  secondary?: Cta;
+  trust?: string[];
+  breadcrumb?: Crumb[];
+  hasMedia?: boolean;
+}
+const { h1, subhead, primary, secondary, trust, breadcrumb, hasMedia = false } = Astro.props;
+---
+<section class={`hero ${hasMedia ? 'hero--media' : ''}`}>
+  <div class="container hero-inner">
+    <div class="hero-content">
+      {breadcrumb && <Breadcrumb items={breadcrumb} />}
+      <h1>{h1}</h1>
+      <p class="lead hero-subhead">{subhead}</p>
+      {(primary || secondary) && (
+        <div class="hero-ctas">
+          {primary && <a class="btn btn--primary" href={primary.href}>{primary.label}</a>}
+          {secondary && <a class="btn btn--secondary" href={secondary.href}>{secondary.label}</a>}
+        </div>
+      )}
+      {trust && <TrustStrip items={trust} class="hero-trust" />}
+    </div>
+    {hasMedia && (
+      <div class="hero-media">
+        <slot name="media" />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: var(--bg);
+    padding-block: var(--section-pad);
+  }
+
+  .hero-inner { display: grid; gap: var(--s-7); align-items: center; }
+  .hero--media .hero-inner { grid-template-columns: 7fr 5fr; }
+
+  .hero-content > :global(.breadcrumb) { margin-bottom: var(--s-5); }
+
+  h1 { max-width: 18ch; }
+
+  .hero-subhead {
+    margin-top: var(--s-5);
+    max-width: 56ch;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+  }
+
+  .hero :global(.hero-trust) { margin-top: var(--s-6); }
+
+  .hero-media :global(img),
+  .hero-media :global(.media-placeholder) {
+    width: 100%;
+    border-radius: var(--r-card);
+  }
+
+  @media (max-width: 768px) {
+    /* Mobile: text above image (§6) */
+    .hero--media .hero-inner { grid-template-columns: 1fr; }
+    h1 { max-width: none; }
+  }
+</style>

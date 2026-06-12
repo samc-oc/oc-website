@@ -1,0 +1,119 @@
+---
+/** Layer-2 location page — IT Support Northern Beaches (child-pages deck p6).
+ *  Recovery target: "managed IT services northern beaches" (currently #22). */
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import FAQ from '../components/FAQ.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '../lib/schema';
+import { SITE } from '../lib/site';
+
+const title = 'IT Support Northern Beaches | Local Since 2008 | Online Consulting';
+const description =
+  'Managed IT support on the Northern Beaches for 18 years. Local helpdesk, on-site visits, 24/7 monitoring. Book a free IT review.';
+
+const breadcrumb = [{ label: 'Home', href: '/' }, { label: 'IT Support Northern Beaches' }];
+
+const faqs: Faq[] = [
+  {
+    q: 'Which Northern Beaches areas do you cover?',
+    a: 'All of them — from Manly to Palm Beach and everywhere between, plus the North Shore and wider Sydney.',
+  },
+  {
+    q: 'Do you charge for on-site visits?',
+    a: 'Our call-out fee is $95 for managed clients and $145 for businesses not on a managed plan.',
+  },
+  {
+    q: 'Can you take over from our current IT provider?',
+    a: 'Yes — we handle the handover directly with your outgoing provider. See how switching works on our Managed IT Services page.',
+  },
+];
+
+const schema = [
+  serviceSchema({ name: 'IT Support Northern Beaches', description, path: '/it-support-northern-beaches/' }),
+  breadcrumbSchema(breadcrumb),
+  faqSchema(faqs),
+];
+---
+<Base title={title} description={description} schema={schema}>
+  <Hero
+    h1="IT support on the Northern Beaches — local for 18 years"
+    subhead="Online Consulting started here on the Beaches in 2008. Today we manage IT for businesses across Sydney — but this is home, and Northern Beaches businesses still get a genuinely local team, on-site fast."
+    breadcrumb={breadcrumb}
+    primary={{ label: 'Book a Free IT Review', href: '/contact/?service=managed-it' }}
+    secondary={{ label: `Call ${SITE.phone}`, href: SITE.phoneHref }}
+    trust={[
+      'Based in Allambie Heights since 2008',
+      '2-hour business-hours response',
+      '24/7 monitoring',
+    ]}
+  />
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>Local, and what that actually means</h2>
+      <p class="local-body">
+        When your server dies or the office network drops, “we’ll dial in” only goes so far.
+        We’re based in Allambie Heights, which means an engineer can be at your Brookvale
+        warehouse, Manly office or Mona Vale practice quickly — and the person on the phone is
+        the same one who’ll walk through your door.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Everything we do, available locally</h2>
+      <div class="grid grid--3">
+        <ServiceCard icon="headset" title="Managed IT Services" href="/managed-it-services/" linkLabel="Explore Managed IT Services" class="reveal">
+          Helpdesk, cybersecurity, cloud and networking — one accountable local team.
+        </ServiceCard>
+        <ServiceCard icon="megaphone" title="Digital Marketing" href="/digital-marketing/" linkLabel="Explore Digital Marketing" class="reveal">
+          SEO, Google Ads, social media and content from the same in-house team.
+        </ServiceCard>
+        <ServiceCard icon="monitor" title="Web Development" href="/web-development/" linkLabel="Explore Web Development" class="reveal">
+          Websites and eCommerce designed, built and hosted in-house.
+        </ServiceCard>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2>Local proof</h2>
+      {/* TODO [ACTION]: collect one testimonial from a Beaches-based client for
+          this page — local proof is its whole purpose. Cathy Curtis (Sydney
+          City) stays on the home page as Sydney-wide proof. */}
+      {/* TODO [ACTION]: client logo row, prioritising Northern Beaches
+          businesses (permission confirmed). */}
+      <p class="local-proof-placeholder small">
+        [Slot reserved: Northern Beaches client testimonial and local client logos]
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Northern Beaches IT support — common questions</h2>
+      <FAQ faqs={faqs} />
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Eighteen years on the Beaches. Let’s talk about your IT."
+    secondaryLabel={SITE.phone}
+  />
+</Base>
+
+<style>
+  h2 { margin-bottom: var(--s-5); }
+  .local-body { max-width: 64ch; }
+  .local-proof-placeholder {
+    border: 1px dashed #CBD5E1;
+    border-radius: var(--r-card);
+    padding: var(--s-6);
+    color: var(--text);
+    background: var(--bg);
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+/** 404 — friendly, with paths back to the main journeys. */
+import Base from '../layouts/Base.astro';
+
+const title = 'Page Not Found | Online Consulting';
+const description = 'That page doesn’t exist — but the team that fixes broken things does.';
+---
+<Base title={title} description={description} noindex>
+  <section class="section nf">
+    <div class="container">
+      <p class="nf-code">404</p>
+      <h1>That page doesn’t exist — but the team that fixes broken things does.</h1>
+      <p class="lead">Try one of these instead, or call us on <a href="tel:+61284597882">+61 2 8459 7882</a>.</p>
+      <div class="nf-links">
+        <a class="btn btn--primary" href="/">Home</a>
+        <a class="btn btn--secondary" href="/managed-it-services/">Managed IT Services</a>
+        <a class="btn btn--secondary" href="/contact/">Contact</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { min-height: 55vh; padding-block: var(--section-pad-lg); }
+  .nf-code {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--blue);
+    margin-bottom: var(--s-3);
+  }
+  .nf h1 { max-width: 26ch; }
+  .nf .lead { margin-top: var(--s-5); }
+  .nf-links { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+</style>

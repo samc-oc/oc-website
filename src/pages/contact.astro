@@ -1,0 +1,209 @@
+---
+/** Contact — supporting-pages deck. Netlify Forms (static-friendly): honeypot
+ *  enabled, notification email to helpdesk (configure recipient in Netlify UI).
+ *  Success state is /contact/thanks/ with focus moved to the confirmation. */
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import ObfuscatedEmail from '../components/ObfuscatedEmail.astro';
+import { SITE } from '../lib/site';
+import { breadcrumbSchema } from '../lib/schema';
+
+const title = 'Contact Online Consulting | Sydney IT Support';
+const description =
+  'Talk to Online Consulting — Sydney IT support, web and marketing. Call +61 2 8459 7882 or book a free review. Based in Allambie Heights.';
+---
+<Base title={title} description={description} schema={[breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'Contact' }])]}>
+  <section class="hero-typographic">
+    <div class="container">
+      <h1>Talk to a person, not a portal</h1>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container contact-grid">
+      {/* Left — direct contact */}
+      <div class="contact-direct">
+        <h2>Get in touch directly</h2>
+        <ul class="contact-list">
+          <li>
+            <Icon name="phone" size={22} />
+            <div>
+              <span class="contact-label small">Phone</span>
+              <a href={SITE.phoneHref} class="contact-value">{SITE.phone}</a>
+            </div>
+          </li>
+          <li>
+            <Icon name="mail" size={22} />
+            <div>
+              <span class="contact-label small">Email</span>
+              <span class="contact-value"><ObfuscatedEmail /></span>
+            </div>
+          </li>
+          <li>
+            <Icon name="map-pin" size={22} />
+            <div>
+              <span class="contact-label small">Office</span>
+              {/* TODO [PLACEHOLDER]: confirm whether to publish street address
+                  or suburb only. Suburb-only shown until confirmed. */}
+              <span class="contact-value">{SITE.locality} {SITE.region}</span>
+            </div>
+          </li>
+          <li>
+            <Icon name="clock" size={22} />
+            <div>
+              <span class="contact-label small">Hours</span>
+              <span class="contact-value">
+                Business hours, Monday–Friday. After-hours support available at a premium rate
+                (8-hour response target).
+              </span>
+            </div>
+          </li>
+        </ul>
+
+        {/* Map embed (suburb-level until street address decision lands) */}
+        <div class="map-wrap">
+          <iframe
+            title="Map — Online Consulting, Allambie Heights NSW"
+            src="https://www.google.com/maps?q=Allambie+Heights+NSW&output=embed"
+            width="100%"
+            height="260"
+            style="border:0; border-radius: var(--r-card);"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <div class="contact-social">
+          <a href={SITE.googlePartnerUrl} rel="noopener">Google Business Profile</a>
+          <a href={SITE.social.linkedin} rel="noopener" aria-label="Online Consulting on LinkedIn">
+            <Icon name="linkedin" size={20} />
+          </a>
+          <a href={SITE.social.facebook} rel="noopener" aria-label="Online Consulting on Facebook">
+            <Icon name="facebook" size={20} />
+          </a>
+        </div>
+      </div>
+
+      {/* Right — booking form */}
+      <div class="card contact-form-card">
+        <h2>Book a Free Review</h2>
+        <form
+          name="book-a-free-review"
+          method="POST"
+          action="/contact/thanks/"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="book-a-free-review" />
+          <p class="honeypot" aria-hidden="true">
+            <label>Don’t fill this out if you’re human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
+
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="cf-business">Business name</label>
+            <input id="cf-business" name="business" type="text" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="cf-phone">Phone</label>
+            <input id="cf-phone" name="phone" type="tel" autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="cf-service">What do you need?</label>
+            <select id="cf-service" name="service">
+              <option value="Not sure">Not sure</option>
+              <option value="Managed IT">Managed IT</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="Web Development">Web Development</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cf-message">Short message</label>
+            <textarea id="cf-message" name="message" rows="4"></textarea>
+          </div>
+          <button class="btn btn--primary form-submit" type="submit">Book My Free Review</button>
+          {/* Success copy lives on /contact/thanks/:
+              "Thanks — a real person will be in touch within one business day."
+              TODO [PLACEHOLDER]: confirm one-business-day reply commitment. */}
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero-typographic { background: var(--bg); padding-block: var(--section-pad); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-8);
+    align-items: start;
+  }
+
+  h2 { margin-bottom: var(--s-5); font-size: var(--h3); }
+
+  .contact-list { list-style: none; margin: 0 0 var(--s-6); padding: 0; display: grid; gap: var(--s-5); }
+  .contact-list li { display: flex; gap: var(--s-4); align-items: flex-start; }
+  .contact-label { display: block; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text); }
+  .contact-value { color: var(--navy); font-weight: 500; text-decoration: none; }
+  a.contact-value:hover { color: var(--blue); }
+
+  .map-wrap { margin-bottom: var(--s-5); }
+
+  .contact-social { display: flex; align-items: center; gap: var(--s-4); }
+  .contact-social a { display: inline-flex; align-items: center; min-height: 44px; gap: 6px; font-weight: 500; }
+
+  /* Form */
+  .honeypot { position: absolute; left: -9999px; }
+
+  .field { margin-bottom: var(--s-4); }
+  .field label {
+    display: block;
+    font-size: var(--small);
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 16px; /* prevents iOS zoom */
+    color: var(--text);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--r-button);
+  }
+  .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+    border-color: var(--blue);
+  }
+
+  .form-submit { width: 100%; margin-top: var(--s-2); }
+
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; gap: var(--s-6); }
+  }
+</style>
+
+<script>
+  /* Service pages pre-select via URL parameter, e.g. /contact/?service=web */
+  const param = new URLSearchParams(window.location.search).get('service');
+  const map: Record<string, string> = {
+    'managed-it': 'Managed IT',
+    it: 'Managed IT',
+    marketing: 'Digital Marketing',
+    web: 'Web Development',
+  };
+  const select = document.getElementById('cf-service') as HTMLSelectElement | null;
+  if (select && param && map[param]) select.value = map[param];
+</script>

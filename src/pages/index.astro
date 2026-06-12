@@ -1,0 +1,274 @@
+---
+/** Home page — section order and copy per online-consulting-home-page.md (final). */
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import PartnerBar from '../components/PartnerBar.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Icon from '../components/Icon.astro';
+import Steps from '../components/Steps.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import TeamCard from '../components/TeamCard.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { PARTNERS, SITE } from '../lib/site';
+
+const title = 'Managed IT Services & Support Sydney | Online Consulting';
+const description =
+  'Sydney’s one-partner technology firm. Managed IT support, cybersecurity, web development and digital marketing — 18 years, one accountable team.';
+
+const whyOnePoints = [
+  {
+    icon: 'shield-check',
+    title: 'Consistent security, everywhere.',
+    body: 'The same standards protect your network, email, cloud and website.',
+  },
+  {
+    icon: 'circle-check',
+    title: 'One point of accountability.',
+    body: 'If something breaks, you make one call — and it’s ours to fix.',
+  },
+  {
+    icon: 'zap',
+    title: 'Faster outcomes for your people.',
+    body: 'No coordinating between vendors. Your staff ask one team, and it gets done.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Book a free IT review.',
+    body: 'We look at your current setup — systems, security, costs and vendors — and tell you plainly what’s working and what’s at risk.',
+  },
+  {
+    title: 'Get a clear plan.',
+    body: 'A practical roadmap in plain English, with priorities and pricing. No jargon, no lock-in pressure.',
+  },
+  {
+    title: 'We take it from there.',
+    body: 'Onboarding, migration and day-to-day support handled by our Sydney team — and your staff always know who to call.',
+  },
+];
+
+/* Testimonials — exact trimmed quotes, never reworded (content rules).
+   Courtesy confirmation with each author recommended before launch. */
+const testimonials = [
+  {
+    quote:
+      'Sam is a reliable and knowledgeable IT consultant who has a clear understanding of the needs of small businesses … Sam can explain IT security and software in terms that anyone can understand, and is proactive in suggesting how to avoid problems in the future … we’ve been very happy with him and his team.',
+    name: 'Cathy Curtis',
+    role: 'Owner, You & Eye Optical',
+  },
+  {
+    quote:
+      'Few people have the opportunity to manage contractors that seem like full-time onsite staff … I’ve had the pleasure of working with Sam and his team for five years now and over this time the level of service has been constant … his team go above and beyond desktop support.',
+    name: 'Mark Eels',
+    role: 'Assistant Dean of Students, NYU Shanghai',
+  },
+  {
+    quote:
+      'All my issues are solved quickly first time … I’m glad you are always there to help.',
+    name: 'Simon Hardaker',
+    role: 'Business Owner, Astemi Property',
+  },
+];
+
+const team = [
+  {
+    name: 'Sam Crawford',
+    role: 'Managing Director',
+    bio: '‘Big Picture Dreamer’ — Sam’s favourite animal would have to be the seal: Fun-loving, slow and endearing on land.',
+  },
+  {
+    name: 'Wilma Amposta',
+    role: 'General Manager',
+    bio: '‘Superwoman’ — Wilma loves superheroes, on movie night and in the office.',
+  },
+  {
+    name: 'Jeff Ernacio',
+    role: 'Help Desk Manager',
+    bio: '‘IT Guy’ — Jeff is someone you can depend on, responsible and very trustworthy.',
+  },
+];
+---
+<Base title={title} description={description}>
+  {/* Section 2 — Hero */}
+  <Hero
+    h1="All your technology. One trusted Sydney partner."
+    subhead="Online Consulting manages your IT, secures your systems, builds your website and runs your marketing — one accountable, in-house team instead of five disconnected vendors."
+    primary={{ label: 'Book a Free IT Review', href: '/contact/' }}
+    secondary={{ label: 'Explore Managed IT Services', href: '/managed-it-services/' }}
+    trust={[
+      '18 years supporting Sydney businesses',
+      '500+ endpoints under management',
+      'Sydney-based helpdesk — 2-hour response in business hours',
+    ]}
+    hasMedia
+  >
+    <PhotoPlaceholder
+      slot="media"
+      label="Photo: the Online Consulting team (real team photography — no stock)"
+      ratio="4 / 3.4"
+    />
+  </Hero>
+
+  {/* Section 3 — Partner bar */}
+  <PartnerBar logos={PARTNERS.all} />
+
+  {/* Section 4 — Service pillars */}
+  <section class="section">
+    <div class="container">
+      <h2>Managed IT services &amp; support is what we do best</h2>
+      <p class="lead pillars-lead">
+        Everything else we offer exists so you can keep your whole technology stack with one firm.
+      </p>
+      <div class="pillars-grid">
+        <ServiceCard
+          icon="headset"
+          title="Managed IT Services & Support"
+          href="/managed-it-services/"
+          linkLabel="Explore Managed IT Services"
+          featured
+          class="reveal"
+          chips={[
+            { label: 'IT Support & Helpdesk', href: '/managed-it-services/it-support/' },
+            { label: 'Cybersecurity', href: '/managed-it-services/cybersecurity/' },
+            { label: 'Cloud Services', href: '/managed-it-services/cloud-services/' },
+            { label: 'Networking', href: '/managed-it-services/networking/' },
+            { label: 'Computer Repairs', href: '/managed-it-services/computer-repairs/' },
+          ]}
+        >
+          Your IT, handled end to end: responsive helpdesk, proactive monitoring, cybersecurity,
+          Microsoft 365 and Google Workspace, networking and on-site support across Sydney. We
+          keep your systems running so your people can do their jobs.
+        </ServiceCard>
+        <ServiceCard icon="megaphone" title="Digital Marketing" href="/digital-marketing/" linkLabel="Explore Digital Marketing" class="reveal">
+          SEO, Google Ads, social media and content from the same team that manages your systems
+          — campaigns built on real data, not handovers between agencies.
+        </ServiceCard>
+        <ServiceCard icon="monitor" title="Web Development" href="/web-development/" linkLabel="Explore Web Development" class="reveal">
+          Websites and eCommerce designed, built and hosted in-house — secured and maintained by
+          the same people who run your IT.
+        </ServiceCard>
+      </div>
+    </div>
+  </section>
+
+  {/* Section 5 — Why One Partner (navy trust moment) */}
+  <section class="section section--navy">
+    <div class="container why-grid">
+      <div class="why-copy">
+        <h2>Fewer vendors. Fewer gaps. Stronger security.</h2>
+        <p>
+          Every additional provider with access to your systems is another set of credentials,
+          another support queue, and another gap for things to fall through. When your IT,
+          website, hosting and marketing live with one firm, security standards stay consistent
+          across everything — and there’s never any finger-pointing about whose problem it is.
+        </p>
+        <p>One partner. One invoice. One team that already knows your business.</p>
+        <a class="why-link" href="/why-one-partner/">See how one-partner technology works →</a>
+      </div>
+      <ul class="why-points">
+        {whyOnePoints.map((point) => (
+          <li class="reveal">
+            <Icon name={point.icon} size={28} class="on-navy" />
+            <div>
+              <h3>{point.title}</h3>
+              <p>{point.body}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* Section 6 — How it works */}
+  <section class="section section--white">
+    <div class="container">
+      <h2 class="center steps-heading">Getting started is simple</h2>
+      <Steps steps={steps} />
+      <div class="center steps-cta">
+        <a class="btn btn--primary" href="/contact/">Book a Free IT Review</a>
+      </div>
+    </div>
+  </section>
+
+  {/* Section 7 — Social proof */}
+  <section class="section">
+    <div class="container">
+      <h2>Trusted by Sydney businesses for 18 years</h2>
+      <div class="grid grid--3 testimonials-grid">
+        {testimonials.map((t) => (
+          <TestimonialCard quote={t.quote} name={t.name} role={t.role} class="reveal" />
+        ))}
+      </div>
+      {/* TODO [ACTION]: client logo row — existing client logos, greyscale,
+          with permission confirmed. Add to /public/images/clients/. */}
+    </div>
+  </section>
+
+  {/* Section 8 — Team teaser */}
+  <section class="section section--white">
+    <div class="container">
+      <h2>Real people. Based in Sydney. Easy to reach.</h2>
+      <p class="team-intro">
+        No offshore call centres, no ticket black holes. When you call Online Consulting, you
+        speak to the team in our Sydney office — the same people who set up your systems and know
+        them inside out.
+      </p>
+      <div class="grid grid--3">
+        {team.map((member) => (
+          <TeamCard name={member.name} role={member.role} bio={member.bio} />
+        ))}
+      </div>
+      <p class="team-link"><a href="/people/">Meet the whole team →</a></p>
+    </div>
+  </section>
+
+  {/* Section 9 — Final CTA banner */}
+  <CTABanner
+    heading="Ready to put all your technology in one safe pair of hands?"
+    body="Book a free, no-obligation IT review — we’ll show you exactly where you stand."
+    secondaryLabel={`Or call us now — ${SITE.phone}`}
+  />
+</Base>
+
+<style>
+  h2 { margin-bottom: var(--s-5); }
+
+  .pillars-lead { margin-bottom: var(--s-6); max-width: 60ch; }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gutter);
+  }
+  .pillars-grid > :global(.service-card--featured) { grid-column: 1 / -1; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 6fr 5fr;
+    gap: var(--s-8);
+    align-items: start;
+  }
+  .why-copy p { margin-bottom: var(--s-4); max-width: 58ch; }
+  .why-link { font-weight: 600; text-decoration: none; }
+  .why-link:hover { text-decoration: underline; }
+
+  .why-points { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-5); }
+  .why-points li { display: flex; gap: var(--s-4); align-items: flex-start; }
+  .why-points h3 { font-size: var(--h4); margin-bottom: var(--s-1); }
+
+  .steps-heading { margin-bottom: var(--s-7); }
+  .steps-cta { margin-top: var(--s-7); }
+
+  .team-intro { max-width: 62ch; margin-bottom: var(--s-6); }
+  .team-link { margin-top: var(--s-5); }
+  .team-link a { font-weight: 600; text-decoration: none; }
+  .team-link a:hover { text-decoration: underline; }
+
+  @media (max-width: 768px) {
+    .pillars-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; gap: var(--s-6); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+</style>

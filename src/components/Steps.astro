@@ -1,0 +1,63 @@
+---
+/** Numbered steps (§2): 3-up row; 40px blue circle; vertical with connecting
+ *  line on mobile. */
+interface Props {
+  steps: { title: string; body: string }[];
+}
+const { steps } = Astro.props;
+---
+<ol class="steps">
+  {steps.map((step, i) => (
+    <li class="step reveal">
+      <span class="step-number" aria-hidden="true">{i + 1}</span>
+      <h3 class="step-title">{step.title}</h3>
+      <p class="step-body">{step.body}</p>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-6);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: step;
+  }
+
+  .step { position: relative; }
+
+  .step-number {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    margin-bottom: var(--s-4);
+  }
+
+  .step-title { font-size: var(--h4); margin-bottom: var(--s-2); }
+
+  @media (max-width: 768px) {
+    .steps { grid-template-columns: 1fr; gap: var(--s-6); }
+    .step { padding-left: 56px; }
+    .step-number { position: absolute; left: 0; top: 0; margin: 0; }
+    /* Connecting line between steps (§2) */
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 48px;
+      bottom: calc(-1 * var(--s-6));
+      width: 2px;
+      background: var(--border);
+    }
+  }
+</style>

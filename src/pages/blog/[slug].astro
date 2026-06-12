@@ -1,0 +1,76 @@
+---
+/** Blog post template — /blog/{same-slug}/ (slugs preserved from WordPress;
+ *  301s from old root-level URLs live in public/_redirects). */
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { getCollection, render } from 'astro:content';
+import { breadcrumbSchema } from '../../lib/schema';
+import { SITE } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: post.data.title },
+];
+
+const schema = [
+  breadcrumbSchema(crumbs),
+  {
+    '@type': 'BlogPosting',
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.pubDate.toISOString(),
+    ...(post.data.updatedDate ? { dateModified: post.data.updatedDate.toISOString() } : {}),
+    url: new URL(`/blog/${post.id}/`, SITE.url).href,
+    author: { '@id': `${SITE.url}/#organization` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+  },
+];
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title={`${post.data.title} | Online Consulting`} description={post.data.description} schema={schema} ogType="article">
+  <article>
+    <header class="post-header">
+      <div class="container">
+        <Breadcrumb items={crumbs} />
+        <h1>{post.data.title}</h1>
+        <p class="small post-meta">
+          <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>
+            {formatDate(post.data.pubDate)}
+          </time>
+          · Online Consulting
+        </p>
+      </div>
+    </header>
+
+    <div class="section section--white">
+      <div class="container">
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <CTABanner
+    heading="Need a hand with this?"
+    body="Talk to the Sydney team that looks after IT, websites and marketing under one roof."
+  />
+</Base>
+
+<style>
+  .post-header { background: var(--bg); padding-block: var(--s-7); }
+  .post-header h1 { margin-top: var(--s-5); max-width: 28ch; }
+  .post-meta { margin-top: var(--s-3); color: var(--text); }
+</style>

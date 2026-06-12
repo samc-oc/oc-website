@@ -1,0 +1,32 @@
+---
+/** Team card — photo, name, role, one personality line (home §8 / Our People). */
+import PhotoPlaceholder from './PhotoPlaceholder.astro';
+
+interface Props {
+  name: string;
+  role: string;
+  bio?: string;
+  /** Path under /public once photography is delivered, e.g.
+   *  /images/team/sam-crawford-online-consulting.jpg */
+  photo?: string;
+}
+const { name, role, bio, photo } = Astro.props;
+---
+<article class="card team-card reveal">
+  {photo ? (
+    <img src={photo} alt={`${name}, ${role} at Online Consulting`} loading="lazy" width="400" height="400" />
+  ) : (
+    <PhotoPlaceholder label={`Photo: ${name}`} ratio="1 / 1" />
+  )}
+  <h3 class="team-name">{name}</h3>
+  <p class="team-role small">{role}</p>
+  {bio && <p class="team-bio">{bio}</p>}
+</article>
+
+<style>
+  .team-card { display: flex; flex-direction: column; gap: var(--s-2); }
+  .team-card img { border-radius: 12px; width: 100%; height: auto; }
+  .team-card :global(.media-placeholder) { margin-bottom: var(--s-2); }
+  .team-name { font-size: var(--h4); margin-top: var(--s-2); }
+  .team-role { font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: 0.04em; }
+</style>

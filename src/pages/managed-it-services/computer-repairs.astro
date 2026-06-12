@@ -1,0 +1,57 @@
+---
+/** Child page 5 — Computer Repairs (final copy). Ranks #12 NB — keep copy
+ *  continuity; 301 from /service/computer-repairs/ in public/_redirects. */
+import ChildPage from '../../layouts/ChildPage.astro';
+
+const faqs = [
+  {
+    q: 'How long do repairs take?',
+    a: 'It depends on parts and fault, but diagnosis is fast and we’ll give you a clear timeframe up front. For managed clients we can usually arrange a loan machine so nobody’s left without a computer.',
+  },
+  {
+    q: 'What does an on-site visit cost?',
+    a: 'Our call-out fee is $95 for managed clients and $145 for businesses not on a managed plan — quoted clearly before we book anything.',
+  },
+  {
+    q: 'Do you repair home computers too?',
+    a: 'Our focus is business, but we look after plenty of home machines for the owners and staff of businesses we support.',
+  },
+];
+---
+<ChildPage
+  title="Computer Repairs Northern Beaches & Sydney | Online Consulting"
+  description="Fast hardware diagnosis and repairs for business. 18 years serving the Northern Beaches and Sydney. Get back up and running today."
+  path="/managed-it-services/computer-repairs/"
+  serviceName="Computer Repairs"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Managed IT Services', href: '/managed-it-services/' },
+    { label: 'Computer Repairs' },
+  ]}
+  h1="Computer repairs for businesses — Northern Beaches and across Sydney"
+  subhead="A broken machine is a person who can’t work. We diagnose fast, repair what’s worth repairing, and tell you honestly when replacement is the smarter spend."
+  trust={['18 years on the Northern Beaches', 'Business-first service', 'Honest repair-vs-replace advice']}
+  features={[
+    { icon: 'wrench', title: 'Hardware diagnosis & repair', body: 'Desktops, laptops, Mac and Windows.' },
+    { icon: 'message-circle', title: 'Repair-vs-replace advice', body: 'A straight answer on whether the fix is worth it.' },
+    { icon: 'hard-drive', title: 'Data transfer & best-attempt recovery', body: 'Your files moved safely to a repaired or new machine; if a drive has failed, we’ll attempt recovery with standard tools and refer you to a specialist lab if it needs more.' },
+    { icon: 'laptop', title: 'New machine setup', body: 'Supplied, configured, secured and added to your managed fleet.' },
+    { icon: 'file-text', title: 'Warranty liaison', body: 'We handle manufacturer warranty claims on your behalf.' },
+  ]}
+  faqs={faqs}
+  ctaHeading="Down a machine? Let’s get it sorted today."
+  crossLinks={[
+    { label: 'Managed IT Services', href: '/managed-it-services/' },
+    { label: 'IT Support & Helpdesk', href: '/managed-it-services/it-support/' },
+    { label: 'Cybersecurity', href: '/managed-it-services/cybersecurity/' },
+    { label: 'Cloud Services', href: '/managed-it-services/cloud-services/' },
+    { label: 'Networking & Infrastructure', href: '/managed-it-services/networking/' },
+  ]}
+>
+  <Fragment slot="why">
+    <p>
+      For managed IT clients, repairs aren’t a separate errand — they’re part of the service,
+      handled by people who already know your systems, your software and your security setup.
+    </p>
+  </Fragment>
+</ChildPage>

@@ -1,0 +1,43 @@
+---
+/** Breadcrumb (§2): --small, slate, chevron separators, current page non-link.
+ *  Pair with breadcrumbSchema() in the page's Base `schema` prop. */
+import Icon from './Icon.astro';
+import type { Crumb } from '../lib/schema';
+
+interface Props {
+  items: Crumb[];
+}
+const { items } = Astro.props;
+---
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    {items.map((item, i) => (
+      <li>
+        {item.href && i < items.length - 1 ? (
+          <a href={item.href}>{item.label}</a>
+        ) : (
+          <span aria-current="page">{item.label}</span>
+        )}
+        {i < items.length - 1 && <Icon name="chevron-right" size={14} class="crumb-sep" />}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: var(--small);
+  }
+  .breadcrumb li { display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--text); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--blue); text-decoration: underline; }
+  .breadcrumb span { color: var(--navy); font-weight: 500; }
+  .breadcrumb :global(.crumb-sep) { color: #94A3B8; }
+</style>

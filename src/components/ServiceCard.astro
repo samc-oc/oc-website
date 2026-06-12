@@ -1,0 +1,59 @@
+---
+/**
+ * Service card (§2): white surface, 16px radius, 32px padding, Lucide icon
+ * (28px, --blue), H3 + description + arrow link.
+ * Featured variant: navy bg, white text, full-row, chip sub-links.
+ */
+import Icon from './Icon.astro';
+import Chips from './Chips.astro';
+
+interface Props {
+  icon: string;
+  title: string;
+  href: string;
+  linkLabel: string;
+  featured?: boolean;
+  chips?: { label: string; href: string }[];
+  class?: string;
+  headingLevel?: 'h2' | 'h3';
+}
+const { icon, title, href, linkLabel, featured = false, chips, class: className = '', headingLevel = 'h3' } = Astro.props;
+const Heading = headingLevel;
+---
+<article class={`card service-card card--hover ${featured ? 'service-card--featured' : ''} ${className}`}>
+  <Icon name={icon} size={28} class={featured ? 'on-navy' : ''} />
+  <Heading class="service-card-title">{title}</Heading>
+  <p class="service-card-body"><slot /></p>
+  <a class="service-card-link" href={href}>
+    {linkLabel}
+    <Icon name="arrow-right" size={18} class={featured ? 'on-navy' : ''} />
+  </a>
+  {chips && <Chips items={chips} onNavy={featured} class="service-card-chips" />}
+</article>
+
+<style>
+  .service-card { display: flex; flex-direction: column; gap: var(--s-3); }
+
+  .service-card-title { font-size: var(--h3); }
+
+  .service-card-body { flex: 1; }
+
+  .service-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    font-weight: 600;
+    color: var(--blue);
+    text-decoration: none;
+  }
+  .service-card-link:hover { text-decoration: underline; }
+
+  .service-card--featured { background: var(--navy); }
+  .service-card--featured .service-card-title { color: #fff; }
+  .service-card--featured .service-card-body { color: var(--text-on-dark); }
+  .service-card--featured .service-card-link { color: var(--cyan); }
+  .service-card--featured :global(:focus-visible) { outline-color: var(--cyan); }
+
+  .service-card-chips { margin-top: var(--s-2); }
+</style>

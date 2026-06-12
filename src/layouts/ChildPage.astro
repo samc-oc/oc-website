@@ -1,0 +1,143 @@
+---
+/**
+ * Shared child-page template (child-pages deck): hero → trust strip →
+ * what's included → why Online Consulting → testimonial → FAQ → CTA banner →
+ * sibling cross-links. Page-specific blocks go in the "extra" / "why" slots.
+ */
+import Base from './Base.astro';
+import Hero from '../components/Hero.astro';
+import FeatureList from '../components/FeatureList.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import FAQ from '../components/FAQ.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Chips from '../components/Chips.astro';
+import { SITE } from '../lib/site';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Crumb, type Faq } from '../lib/schema';
+
+interface Props {
+  /* SEO — must match the SEO master sheet exactly */
+  title: string;
+  description: string;
+  path: string;
+  serviceName: string;
+  /* Hero */
+  breadcrumb: Crumb[];
+  h1: string;
+  subhead: string;
+  trust: string[];
+  primaryCtaLabel?: string;
+  primaryCtaHref?: string;
+  /* Content */
+  featuresHeading?: string;
+  features: { icon: string; title: string; body: string }[];
+  whyHeading?: string;
+  testimonial?: { quote: string; name: string; role: string };
+  faqHeading?: string;
+  faqs: Faq[];
+  /* CTA + cross-links */
+  ctaHeading: string;
+  ctaBody?: string;
+  crossLinksLabel?: string;
+  crossLinks: { label: string; href: string }[];
+}
+
+const {
+  title, description, path, serviceName,
+  breadcrumb, h1, subhead, trust,
+  primaryCtaLabel = 'Book a Free IT Review',
+  // Contact form pre-selects the service via URL parameter (Contact deck)
+  primaryCtaHref = path.startsWith('/digital-marketing/')
+    ? '/contact/?service=marketing'
+    : path.startsWith('/web-development/')
+      ? '/contact/?service=web'
+      : '/contact/?service=managed-it',
+  featuresHeading = "What's included",
+  features,
+  whyHeading = 'Why Online Consulting',
+  testimonial,
+  faqHeading = 'Common questions',
+  faqs,
+  ctaHeading, ctaBody,
+  crossLinksLabel = 'Also part of Managed IT:',
+  crossLinks,
+} = Astro.props;
+
+const schema = [
+  serviceSchema({ name: serviceName, description, path }),
+  breadcrumbSchema(breadcrumb),
+  faqSchema(faqs),
+];
+---
+<Base title={title} description={description} schema={schema}>
+  <Hero
+    h1={h1}
+    subhead={subhead}
+    breadcrumb={breadcrumb}
+    primary={{ label: primaryCtaLabel, href: primaryCtaHref }}
+    secondary={{ label: `Call ${SITE.phone}`, href: SITE.phoneHref }}
+    trust={trust}
+  />
+
+  <slot name="before-features" />
+
+  <section class="section section--white">
+    <div class="container">
+      <h2 class="child-section-heading">{featuresHeading}</h2>
+      <FeatureList items={features} />
+    </div>
+  </section>
+
+  <slot name="extra" />
+
+  <section class="section">
+    <div class="container child-why">
+      <div class="child-why-copy">
+        <h2 class="child-section-heading">{whyHeading}</h2>
+        <slot name="why" />
+      </div>
+      {testimonial && (
+        <TestimonialCard
+          quote={testimonial.quote}
+          name={testimonial.name}
+          role={testimonial.role}
+          class="reveal"
+        />
+      )}
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <h2 class="child-section-heading">{faqHeading}</h2>
+      <FAQ faqs={faqs} />
+    </div>
+  </section>
+
+  <CTABanner heading={ctaHeading} body={ctaBody} primaryLabel={primaryCtaLabel} primaryHref={primaryCtaHref} />
+
+  <section class="child-crosslinks">
+    <div class="container">
+      <p class="small child-crosslinks-label">{crossLinksLabel}</p>
+      <Chips items={crossLinks} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .child-section-heading { margin-bottom: var(--s-6); }
+
+  .child-why {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: var(--s-7);
+    align-items: start;
+  }
+  .child-why-copy :global(p) { margin-bottom: var(--s-4); max-width: 62ch; }
+
+  .child-crosslinks { padding-block: var(--s-6); }
+  .child-crosslinks-label { font-weight: 600; color: var(--navy); margin-bottom: var(--s-3); }
+
+  @media (max-width: 768px) {
+    .child-why { grid-template-columns: 1fr; }
+  }
+</style>

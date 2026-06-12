@@ -1,0 +1,25 @@
+---
+/** Chip sub-links (§2): pill radius, --small text; rgba white bg on navy. */
+interface Props {
+  items: { label: string; href: string }[];
+  onNavy?: boolean;
+  class?: string;
+}
+const { items, onNavy = false, class: className = '' } = Astro.props;
+---
+<ul class={`chip-list ${className}`}>
+  {items.map((item) => (
+    <li><a class={`chip ${onNavy ? 'on-navy' : ''}`} href={item.href}>{item.label}</a></li>
+  ))}
+</ul>
+
+<style>
+  .chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>

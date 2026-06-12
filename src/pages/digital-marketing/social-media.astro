@@ -1,0 +1,57 @@
+---
+/** Child — Social Media Marketing (final copy).
+ *  301 from /service/social-media-marketing/. */
+import ChildPage from '../../layouts/ChildPage.astro';
+
+const faqs = [
+  {
+    q: 'Which platforms should we be on?',
+    a: 'Wherever your customers are — usually that’s fewer platforms, done better. For most Sydney SMBs that’s one or two, not five.',
+  },
+  {
+    q: 'Can you work with content we produce ourselves?',
+    a: 'Absolutely — many clients send photos from the floor and we turn them into polished, on-brand posts.',
+  },
+];
+---
+<ChildPage
+  title="Social Media Marketing Sydney | Online Consulting"
+  description="Social media strategy, content and management for Sydney businesses — building an audience that turns into enquiries, not just likes."
+  path="/digital-marketing/social-media/"
+  serviceName="Social Media Marketing"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Digital Marketing', href: '/digital-marketing/' },
+    { label: 'Social Media Marketing' },
+  ]}
+  h1="Social media that works for the business, not the algorithm"
+  subhead="Posting isn’t a strategy. We plan, create and manage social media tied to what you actually need — enquiries, bookings, recruitment, reputation — and report on those, not vanity metrics."
+  trust={['Strategy, content & management in-house', 'Photography & video in-house', '18 years building brands online']}
+  primaryCtaLabel="Book a Free Marketing Review"
+  features={[
+    { icon: 'share-2', title: 'Strategy', body: 'The right platforms for your audience, a sensible cadence, and goals tied to business outcomes.' },
+    { icon: 'camera', title: 'Content creation', body: 'Posts, graphics, photography and video produced by our in-house content team.' },
+    /* TODO [PLACEHOLDER]: confirm community management is included in standard engagements */
+    { icon: 'message-circle', title: 'Community management', body: 'Comments, messages and reviews handled in your voice.' },
+    { icon: 'megaphone', title: 'Paid social', body: 'Boosted reach and targeted campaigns on Meta and LinkedIn where organic isn’t enough.' },
+    { icon: 'chart-column', title: 'Reporting', body: 'Growth, engagement and — most importantly — what social sent to your website and phone.' },
+  ]}
+  faqs={faqs}
+  ctaHeading="Build a social presence that sends you customers — not just notifications."
+  crossLinksLabel="Also part of Digital Marketing:"
+  crossLinks={[
+    { label: 'Digital Marketing', href: '/digital-marketing/' },
+    { label: 'SEO', href: '/digital-marketing/seo/' },
+    { label: 'Google Ads', href: '/digital-marketing/google-ads/' },
+    { label: 'Content & Copywriting', href: '/digital-marketing/content-copywriting/' },
+  ]}
+>
+  <Fragment slot="why">
+    <p>
+      Your social content, website and ads come from one team with one calendar — so campaigns
+      line up everywhere your customers look, and your tracking shows what social actually
+      contributed.
+      <a href="/why-one-partner/">See how one-partner technology works →</a>
+    </p>
+  </Fragment>
+</ChildPage>

@@ -1,0 +1,47 @@
+---
+/** CTA banner (§2): navy, centred H2 + one-line body + button pair, 96px pad. */
+import { SITE } from '../lib/site';
+
+interface Props {
+  heading: string;
+  body?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  /** Secondary defaults to the phone number */
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+const {
+  heading,
+  body,
+  primaryLabel = 'Book a Free IT Review',
+  primaryHref = '/contact/',
+  secondaryLabel = `Or call us now — ${SITE.phone}`,
+  secondaryHref = SITE.phoneHref,
+} = Astro.props;
+---
+<section class="section--navy cta-banner">
+  <div class="container center">
+    <h2>{heading}</h2>
+    {body && <p class="lead cta-body">{body}</p>}
+    <div class="cta-buttons">
+      <a class="btn btn--primary" href={primaryHref}>{primaryLabel}</a>
+      <a class="btn btn--secondary on-navy" href={secondaryHref}>{secondaryLabel}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-banner { padding-block: var(--s-9); }
+  .cta-body { margin-top: var(--s-4); }
+  .cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+  }
+  @media (max-width: 640px) {
+    .cta-banner { padding-block: var(--s-8); }
+  }
+</style>

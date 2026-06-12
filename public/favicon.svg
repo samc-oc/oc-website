@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- TODO [ACTION]: replace with the real Online Consulting favicon/logo mark -->
+  <rect width="64" height="64" rx="14" fill="#0B1F3D"/>
+  <text x="32" y="42" text-anchor="middle" font-family="Manrope, Inter, sans-serif" font-weight="800" font-size="26" fill="#FFFFFF">OC</text>
+</svg>
