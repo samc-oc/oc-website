@@ -34,8 +34,8 @@ A production build of the current state is already in `dist/` for preview (open 
 5. **Portfolio projects + marketing case study** [ACTION: Jackie/Wilma] — slots on `/work/` and Web Development pillar; do not reuse old /work/ projects; client permission required.
 6. **Northern Beaches testimonial** [ACTION] — slot on `/it-support-northern-beaches/`.
 7. **Client logo rows** [ACTION] — slots on home, Managed IT pillar, NB page (permission-confirmed logos).
-8. **Street address on Contact** [PLACEHOLDER] — suburb-only shown until decided; update `src/lib/site.ts` + map embed.
-9. **ABN** [PLACEHOLDER] — slot in footer (`Footer.astro`).
+8. ~~Street address on Contact~~ — RESOLVED: suburb-only (Allambie Heights) is the public NAP location, matching GBP; registered office (Level 15, 1 Farrer Place, Sydney NSW 2000) shown on Contact as a secondary line only, deliberately excluded from LocalBusiness schema.
+9. ~~ABN~~ — RESOLVED: ABN 28 140 582 681 in the footer.
 10. **One-business-day reply commitment** [PLACEHOLDER] — wording on `/contact/thanks/`.
 11. **Community management inclusion** [PLACEHOLDER] — Social Media page feature list.
 12. **Shopify accounting integrations (Xero/MYOB?)** [PLACEHOLDER] — eCommerce page.

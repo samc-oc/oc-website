@@ -15,10 +15,15 @@ export const SITE = {
   region: 'NSW',
   postcode: '2100',
   country: 'AU',
-  // TODO [PLACEHOLDER]: confirm whether to publish street address or suburb only (Contact deck)
+  /** Public locality is suburb-only (confirmed): Sam works from home on the
+   *  Northern Beaches; Allambie Heights anchors the local SEO strategy and
+   *  must match the Google Business Profile exactly. */
   streetAddress: '',
-  // TODO [PLACEHOLDER]: ABN to be confirmed (home page footer deck)
-  abn: '',
+  abn: '28 140 582 681',
+  /** Registered office — public/virtual address only, NOT the NAP location.
+   *  Shown on Contact for credibility; kept out of LocalBusiness schema so
+   *  local signals stay consistent with GBP. */
+  registeredOffice: 'Level 15, 1 Farrer Place, Sydney NSW 2000',
   geo: { lat: -33.7766, lng: 151.2493 }, // Allambie Heights NSW
   social: {
     linkedin: 'https://www.linkedin.com/company/2272394',

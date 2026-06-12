@@ -43,9 +43,16 @@ const description =
             <Icon name="map-pin" size={22} />
             <div>
               <span class="contact-label small">Office</span>
-              {/* TODO [PLACEHOLDER]: confirm whether to publish street address
-                  or suburb only. Suburb-only shown until confirmed. */}
-              <span class="contact-value">{SITE.locality} {SITE.region}</span>
+              {/* Suburb-only confirmed — home-based on the Northern Beaches;
+                  must match GBP for local SEO (NAP consistency). */}
+              <span class="contact-value">{SITE.locality} {SITE.region} — Sydney’s Northern Beaches</span>
+            </div>
+          </li>
+          <li>
+            <Icon name="file-text" size={22} />
+            <div>
+              <span class="contact-label small">Registered office</span>
+              <span class="contact-value">{SITE.registeredOffice}</span>
             </div>
           </li>
           <li>

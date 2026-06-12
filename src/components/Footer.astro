@@ -31,7 +31,7 @@ const year = new Date().getFullYear();
         <p class="footer-badge">
           <a href={SITE.googlePartnerUrl} rel="noopener">Google Partner</a>
         </p>
-        {/* TODO [PLACEHOLDER]: ABN to be confirmed — render here once supplied */}
+        <p class="footer-abn small">ABN {SITE.abn}</p>
       </div>
 
       {FOOTER_COLUMNS.map((col) => (
@@ -94,6 +94,8 @@ const year = new Date().getFullYear();
   .footer-badge { margin-top: var(--s-4); font-size: var(--small); }
   .footer-badge a { color: var(--text-on-dark); }
   .footer-badge a:hover { color: #fff; }
+
+  .footer-abn { margin-top: var(--s-2); color: var(--text-on-dark); opacity: 0.85; }
 
   .footer-heading {
     font-family: 'Inter', sans-serif;

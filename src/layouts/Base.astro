@@ -46,7 +46,8 @@ const siteSchema = {
       priceRange: '$$',
       address: {
         '@type': 'PostalAddress',
-        // TODO [PLACEHOLDER]: add streetAddress once publish decision confirmed
+        // Suburb-only confirmed: home-based; must match GBP exactly.
+        // (Registered office is deliberately NOT used here — see site.ts.)
         addressLocality: SITE.locality,
         addressRegion: SITE.region,
         postalCode: SITE.postcode,
