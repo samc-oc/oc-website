@@ -14,7 +14,7 @@ const { name, role, bio, photo } = Astro.props;
 ---
 <article class="card team-card reveal">
   {photo ? (
-    <img src={photo} alt={`${name}, ${role} at Online Consulting`} loading="lazy" width="400" height="400" />
+    <img src={photo} alt={`${name}, ${role} at Online Consulting`} loading="lazy" width="400" height="400" class="team-photo" />
   ) : (
     <PhotoPlaceholder label={`Photo: ${name}`} ratio="1 / 1" />
   )}
@@ -25,7 +25,13 @@ const { name, role, bio, photo } = Astro.props;
 
 <style>
   .team-card { display: flex; flex-direction: column; gap: var(--s-2); }
-  .team-card img { border-radius: 12px; width: 100%; height: auto; }
+  .team-card img {
+    border-radius: 12px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background: var(--bg);
+  }
   .team-card :global(.media-placeholder) { margin-bottom: var(--s-2); }
   .team-name { font-size: var(--h4); margin-top: var(--s-2); }
   .team-role { font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: 0.04em; }

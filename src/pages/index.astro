@@ -2,7 +2,7 @@
 /** Home page — section order and copy per online-consulting-home-page.md (final). */
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import BrandPanel from '../components/BrandPanel.astro';
 import PartnerBar from '../components/PartnerBar.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import Icon from '../components/Icon.astro';
@@ -11,6 +11,7 @@ import TestimonialCard from '../components/TestimonialCard.astro';
 import TeamCard from '../components/TeamCard.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { PARTNERS, SITE } from '../lib/site';
+import { TEAM_TEASER } from '../lib/team';
 
 const title = 'Managed IT Services & Support Sydney | Online Consulting';
 const description =
@@ -72,23 +73,7 @@ const testimonials = [
   },
 ];
 
-const team = [
-  {
-    name: 'Sam Crawford',
-    role: 'Managing Director',
-    bio: '‘Big Picture Dreamer’ — Sam’s favourite animal would have to be the seal: Fun-loving, slow and endearing on land.',
-  },
-  {
-    name: 'Wilma Amposta',
-    role: 'General Manager',
-    bio: '‘Superwoman’ — Wilma loves superheroes, on movie night and in the office.',
-  },
-  {
-    name: 'Jeff Ernacio',
-    role: 'Help Desk Manager',
-    bio: '‘IT Guy’ — Jeff is someone you can depend on, responsible and very trustworthy.',
-  },
-];
+const team = TEAM_TEASER;
 ---
 <Base title={title} description={description}>
   {/* Section 2 — Hero */}
@@ -104,11 +89,9 @@ const team = [
     ]}
     hasMedia
   >
-    <PhotoPlaceholder
-      slot="media"
-      label="Photo: the Online Consulting team (real team photography — no stock)"
-      ratio="4 / 3.4"
-    />
+    {/* Brand graphic developed from the logo motif — swap for the real team
+        photo when the photography shoot lands (design system §3). */}
+    <BrandPanel slot="media" ratio="4 / 3.4" />
   </Hero>
 
   {/* Section 3 — Partner bar */}
@@ -217,7 +200,7 @@ const team = [
       </p>
       <div class="grid grid--3">
         {team.map((member) => (
-          <TeamCard name={member.name} role={member.role} bio={member.bio} />
+          <TeamCard name={member.name} role={member.role} bio={member.bio} photo={member.photo} />
         ))}
       </div>
       <p class="team-link"><a href="/people/">Meet the whole team →</a></p>

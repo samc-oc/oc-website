@@ -1,5 +1,7 @@
 ---
-/** CTA banner (§2): navy, centred H2 + one-line body + button pair, 96px pad. */
+/** CTA banner (§2): navy, centred H2 + one-line body + button pair, 96px pad.
+ *  Faint dotted-globe brand motif in the background (from the logo). */
+import GlobeMotif from './GlobeMotif.astro';
 import { SITE } from '../lib/site';
 
 interface Props {
@@ -21,6 +23,7 @@ const {
 } = Astro.props;
 ---
 <section class="section--navy cta-banner">
+  <GlobeMotif class="cta-motif" />
   <div class="container center">
     <h2>{heading}</h2>
     {body && <p class="lead cta-body">{body}</p>}
@@ -32,7 +35,17 @@ const {
 </section>
 
 <style>
-  .cta-banner { padding-block: var(--s-9); }
+  .cta-banner { position: relative; padding-block: var(--s-9); overflow: hidden; }
+  .cta-banner :global(.cta-motif) {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    right: -70px;
+    bottom: -90px;
+    opacity: 0.14;
+    pointer-events: none;
+  }
+  .cta-banner .container { position: relative; }
   .cta-body { margin-top: var(--s-4); }
   .cta-buttons {
     display: flex;

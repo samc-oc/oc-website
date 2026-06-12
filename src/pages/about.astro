@@ -5,6 +5,7 @@ import TrustStrip from '../components/TrustStrip.astro';
 import TeamCard from '../components/TeamCard.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { breadcrumbSchema } from '../lib/schema';
+import { TEAM_TEASER, TEAM_GROUP_PHOTO } from '../lib/team';
 
 const title = 'About Online Consulting | Sydney IT Firm Since 2008';
 const description =
@@ -25,11 +26,7 @@ const beliefs = [
   },
 ];
 
-const team = [
-  { name: 'Sam Crawford', role: 'Managing Director' },
-  { name: 'Wilma Amposta', role: 'General Manager' },
-  { name: 'Jeff Ernacio', role: 'Help Desk Manager' },
-];
+const team = TEAM_TEASER;
 ---
 <Base title={title} description={description} schema={[breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'About' }])]}>
   <section class="hero-typographic">
@@ -75,6 +72,15 @@ const team = [
     </div>
   </section>
 
+  {/* Team band — real group photo migrated from the old site */}
+  <section class="team-band" aria-label="The Online Consulting team">
+    <img
+      src={TEAM_GROUP_PHOTO}
+      alt="The wider Online Consulting development team together outdoors"
+      loading="lazy"
+    />
+  </section>
+
   {/* Stats strip */}
   <section class="section section--white stats-section">
     <div class="container">
@@ -95,7 +101,7 @@ const team = [
       <h2>The team behind the helpdesk</h2>
       <div class="grid grid--3">
         {team.map((member) => (
-          <TeamCard name={member.name} role={member.role} />
+          <TeamCard name={member.name} role={member.role} photo={member.photo} />
         ))}
       </div>
       <p class="team-link"><a href="/people/">Meet the whole team →</a></p>
@@ -115,6 +121,15 @@ const team = [
   .story p { margin-bottom: var(--s-5); font-size: var(--body-lg); }
 
   .stats-section { padding-block: var(--s-7); }
+
+  .team-band { max-height: 340px; overflow: hidden; }
+  .team-band img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* source banner is darkened for text overlay — lift it for standalone use */
+    filter: brightness(1.55) contrast(1.04);
+  }
 
   .card h3 { font-size: var(--h4); margin-bottom: var(--s-3); }
 

@@ -1,12 +1,28 @@
-<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="oc-tile" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#14315B"/>
-      <stop offset="1" stop-color="#0B1F3D"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="url(#oc-tile)"/>
-  <circle cx="20.21" cy="58.47" r="1.26" fill="rgb(98,187,250)"/>
+---
+/**
+ * Online Consulting logo — development of the original dotted-globe mark,
+ * rebuilt in the design-system palette (navy tile, white -> cyan -> blue dot
+ * sweep) with the original online/consulting two-weight wordmark in Manrope.
+ * Generated as inline SVG: crisp at any size, zero requests, themeable.
+ */
+interface Props {
+  /** 'light' = on white header; 'dark' = on navy footer */
+  variant?: 'light' | 'dark';
+  markSize?: number;
+  wordmark?: boolean;
+}
+const { variant = 'light', markSize = 40, wordmark = true } = Astro.props;
+---
+<span class={`oc-logo oc-logo--${variant}`} style={`--mark: ${markSize}px;`}>
+  <svg viewBox="0 0 64 64" class="oc-logo-mark" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="oc-tile" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#14315B"/>
+        <stop offset="1" stop-color="#0B1F3D"/>
+      </linearGradient>
+    </defs>
+    <rect width="64" height="64" rx="14" fill="url(#oc-tile)"/>
+    <circle cx="20.21" cy="58.47" r="1.26" fill="rgb(98,187,250)"/>
     <circle cx="22.05" cy="59.29" r="1.25" fill="rgb(98,188,250)"/>
     <circle cx="23.76" cy="60.05" r="1.2" fill="rgb(99,189,250)"/>
     <circle cx="25.23" cy="60.71" r="1.13" fill="rgb(99,190,250)"/>
@@ -123,4 +139,34 @@
     <circle cx="38.77" cy="3.29" r="1.13" fill="rgb(186,245,252)"/>
     <circle cx="40.24" cy="3.95" r="1.2" fill="rgb(188,245,252)"/>
     <circle cx="41.95" cy="4.71" r="1.25" fill="rgb(191,245,252)"/>
-</svg>
+  </svg>
+  {wordmark && (
+    <span class="oc-logo-word">online<span class="oc-logo-word2">consulting</span></span>
+  )}
+</span>
+
+<style>
+  .oc-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1;
+  }
+  .oc-logo-mark {
+    width: var(--mark);
+    height: var(--mark);
+    flex-shrink: 0;
+    display: block;
+  }
+  .oc-logo-word {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: calc(var(--mark) * 0.52);
+    letter-spacing: -0.015em;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+  .oc-logo-word2 { font-weight: 500; color: #64748B; }
+  .oc-logo--dark .oc-logo-word { color: #fff; }
+  .oc-logo--dark .oc-logo-word2 { color: #94A3B8; }
+</style>

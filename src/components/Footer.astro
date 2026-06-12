@@ -4,6 +4,7 @@
  * NAP must stay identical to Contact page, schema and GBP.
  */
 import Icon from './Icon.astro';
+import Logo from './Logo.astro';
 import { FOOTER_COLUMNS, SITE } from '../lib/site';
 
 const year = new Date().getFullYear();
@@ -12,10 +13,8 @@ const year = new Date().getFullYear();
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        {/* TODO [ACTION]: replace text wordmark with logo asset (white variant) */}
         <a class="footer-logo" href="/" aria-label="Online Consulting — home">
-          <span class="footer-logo-mark" aria-hidden="true">OC</span>
-          <span>Online Consulting</span>
+          <Logo variant="dark" markSize={36} />
         </a>
         <p class="footer-tagline">
           Sydney-based IT services &amp; support — Northern Beaches to the CBD.
@@ -77,21 +76,7 @@ const year = new Date().getFullYear();
   .footer-logo {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    font-family: 'Manrope', sans-serif;
-    font-weight: 800;
-    font-size: 18px;
-    color: #fff;
     text-decoration: none;
-  }
-  .footer-logo-mark {
-    display: grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 9px;
-    background: rgba(255, 255, 255, 0.12);
-    font-size: 13px;
   }
 
   .footer-tagline { margin-block: var(--s-4); font-size: var(--small); }

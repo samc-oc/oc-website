@@ -1,38 +1,19 @@
 ---
-/** Our People — supporting-pages deck. Existing personality bios carried over
- *  (they stay — memorable, human, exactly what a "real local team" claim
- *  should look like).
+/** Our People — supporting-pages deck. Full roster + personality bios carried
+ *  over from the current /people/ page (the quirky bios stay).
+ *  Photos: migrated from the old site via src/lib/team.ts (see its notes —
+ *  run scripts/fetch-team-photos.sh before launch to localise the files).
  *  TODO [ACTION]: refresh team photography in a consistent style — one of the
- *  highest-value visual investments on the site. Name files descriptively,
- *  e.g. sam-crawford-online-consulting.jpg (SEO master sheet §6). */
+ *  highest-value visual investments on the site. */
 import Base from '../layouts/Base.astro';
 import TeamCard from '../components/TeamCard.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { breadcrumbSchema } from '../lib/schema';
+import { TEAM, TEAM_GROUP_PHOTO } from '../lib/team';
 
 const title = 'Meet the Team | Online Consulting Sydney';
 const description =
   'The Sydney team behind Online Consulting — the people who answer when you call, and the personalities behind 18 years of IT support.';
-
-/* Bios carried from the current /people/ page. TODO: confirm the full team
- * roster and complete bio lines against the live page at content handover. */
-const team = [
-  {
-    name: 'Sam Crawford',
-    role: 'Managing Director',
-    bio: '‘Big Picture Dreamer’ — Sam’s favourite animal would have to be the seal: Fun-loving, slow and endearing on land.',
-  },
-  {
-    name: 'Wilma Amposta',
-    role: 'General Manager',
-    bio: '‘Superwoman’ — Wilma loves superheroes. When she and her girlfriends head out to the movies, it’s a superhero film.',
-  },
-  {
-    name: 'Jeff Ernacio',
-    role: 'Help Desk Manager',
-    bio: '‘IT Guy’ — Jeff is someone you can depend on, responsible and very trustworthy.',
-  },
-];
 ---
 <Base title={title} description={description} schema={[breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'Our People' }])]}>
   <section class="hero-typographic">
@@ -49,11 +30,19 @@ const team = [
   <section class="section section--white">
     <div class="container">
       <div class="grid grid--3">
-        {team.map((member) => (
-          <TeamCard name={member.name} role={member.role} bio={member.bio} />
+        {TEAM.map((member) => (
+          <TeamCard name={member.name} role={member.role} bio={member.bio} photo={member.photo} />
         ))}
       </div>
     </div>
+  </section>
+
+  <section class="team-band" aria-label="The wider Online Consulting team">
+    <img
+      src={TEAM_GROUP_PHOTO}
+      alt="The wider Online Consulting development team together outdoors"
+      loading="lazy"
+    />
   </section>
 
   <CTABanner heading="Put names and faces to your IT" />
@@ -62,4 +51,13 @@ const team = [
 <style>
   .hero-typographic { background: var(--bg); padding-block: var(--section-pad-lg); }
   .hero-typographic .lead { margin-top: var(--s-5); max-width: 58ch; }
+
+  .team-band { max-height: 380px; overflow: hidden; }
+  .team-band img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* source banner is darkened for text overlay — lift it for standalone use */
+    filter: brightness(1.55) contrast(1.04);
+  }
 </style>
